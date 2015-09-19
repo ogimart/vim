@@ -1,8 +1,9 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Ogi Martinovic
-" September 2015
+" .vimrc
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+" PATHOGEN
 execute pathogen#infect()
 call pathogen#helptags()
 
@@ -24,12 +25,6 @@ filetype plugin indent on
 " COLOR SCHEMES
 "   hybrid
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" AUTO RELOAD .vimrc
-augroup reload_vimrc " {
-  autocmd!
-  autocmd BufWritePost ~/.vimrc source ~/.vimrc
-augroup END " }
 
 " GENERAL
 set encoding=utf-8
@@ -121,9 +116,6 @@ let g:SuperTabDefaultCompletionType = "context"
 " SQL
 let g:dbext_default_profile = 'pg'
 so ~/.vim/config/dbextprofile.vim
-
-" OMNI COMPLETE
-set omnifunc=syntaxcomplete#Complete
 
 " CTAGS
 " OS X : brew install ctags
