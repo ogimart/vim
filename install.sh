@@ -21,6 +21,9 @@ git clone git://github.com/rking/ag.vim.git
 git clone git://github.com/tpope/vim-fugitive.git
 git clone git://github.com/airblade/vim-gitgutter.git
 
+# Common Lisp
+git clone git://github.com/kovisoft/slimv.git
+
 # Clojure
 git clone git://github.com/tpope/vim-fireplace.git
 git clone git://github.com/guns/vim-clojure-static.git

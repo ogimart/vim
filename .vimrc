@@ -9,13 +9,15 @@ call pathogen#helptags()
 
 set nocompatible
 syntax on
-filetype plugin indent on 
+filetype plugin indent on
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " GENERAL PLUGINS
 "   ctrlp vim-airline vim-surround supertab ag
 " GIT PLUGINS
 "   vim-fugitive vim-gitgutter
+" COMMON LISP PLUGINS
+"   slimv
 " CLOJURE PLUGINS
 "   vim-fireplace vim-clojure-static vim-clojure-highlight
 " PYTHON PLUGINS
@@ -59,24 +61,26 @@ set smartindent
 "nnoremap <A-d> :bdel<CR>
 "nnoremap <A-j> :m .+1<CR>==
 "nnoremap <A-k> :m .-2<CR>==
+"nnoremap <A-e> :Explore<CR>
 " Mac specific
 nnoremap ≤ :bprev<CR>
 nnoremap ≥ :bnext<CR>
 nnoremap ∂ :bdel<CR>
 nnoremap ∆ :m .+1<CR>==
 nnoremap ˚ :m .-2<CR>==
+nnoremap ´ :Explore<CR>
 
 " COLOR SCHEME / FONT / SCROLLBARS
 set fillchars+=vert:\ 
 "hi vertsplit guifg=fg guibg=bg
 set background=dark
 colorscheme hybrid
-set guifont=Inconsolata\ for\ Powerline:h16
+set guifont=Inconsolata\ for\ Powerline:h14
 set guioptions-=r
 set guioptions-=L
 "hi MatchParen guibg=white guifg=black
 if has('gui_running')
-  set transparency=5
+  set transparency=1
 endif
 
 " CTRLP
