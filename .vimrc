@@ -25,7 +25,7 @@ filetype plugin indent on
 " SQL PLUGINS
 "   dbext.vim
 " COLOR SCHEMES
-"   hybrid
+"   onedark airline-onedark
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " GENERAL
@@ -56,6 +56,7 @@ set copyindent
 set smartindent
 
 " REMAP
+" Linux specific
 "nnoremap <A-,> :bprev<CR>
 "nnoremap <A-.> :bnext<CR>
 "nnoremap <A-d> :bdel<CR>
@@ -74,7 +75,7 @@ nnoremap ´ :Explore<CR>
 set fillchars+=vert:\ 
 "hi vertsplit guifg=fg guibg=bg
 set background=dark
-colorscheme hybrid
+colorscheme onedark
 set guifont=Inconsolata\ for\ Powerline:h14
 set guioptions-=r
 set guioptions-=L
@@ -89,12 +90,16 @@ set wildignore+=*/tmp/*,*.so,*.dylib,*.swp,*.zip,*.gz,*.tar,*.class,*.pyc
 " AIRLINE
 set laststatus=2
 let g:airline_powerline_fonts=1
-let g:airline_theme='hybrid'
+let g:airline_theme='onedark'
 let g:airline#extensions#tabline#enabled=1
 
 " GIT
-let g:gitgutter_sign_column_always=1
+let g:gitgutter_enabled = 0
+let g:gitgutter_sign_column_always = 1
 highlight clear SignColumn
+
+" COMMON LISP
+"let g:lisp_rainbow = 1
 
 " PYTHON MODE
 let g:pymode_rope = 1
