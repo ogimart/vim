@@ -3,17 +3,11 @@
 " .vimrc
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" PATHOGEN
-execute pathogen#infect()
-call pathogen#helptags()
-
-set nocompatible
-syntax on
-filetype plugin indent on
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" PLUGIN MANAGER
+"   pathogen
 " GENERAL PLUGINS
-"   ctrlp vim-airline vim-surround supertab ag
+"   ctrlp vim-surround supertab ack
 " GIT PLUGINS
 "   vim-fugitive vim-gitgutter
 " COMMON LISP PLUGINS
@@ -25,8 +19,18 @@ filetype plugin indent on
 " SQL PLUGINS
 "   dbext.vim
 " COLOR SCHEMES
-"   onedark airline-onedark
+"   hybrid vim-airline vim-airline-themes
+" NOT INSTALLED (TO DO)
+"   ale pipe.vim vim-dispatch latex
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" PATHOGEN
+execute pathogen#infect()
+call pathogen#helptags()
+
+set nocompatible
+syntax on
+filetype plugin indent on
 
 " GENERAL
 set encoding=utf-8
@@ -55,51 +59,42 @@ set autoindent
 set copyindent
 set smartindent
 
-" REMAP
-" Linux specific
-"nnoremap <A-,> :bprev<CR>
-"nnoremap <A-.> :bnext<CR>
-"nnoremap <A-d> :bdel<CR>
-"nnoremap <A-j> :m .+1<CR>==
-"nnoremap <A-k> :m .-2<CR>==
-"nnoremap <A-e> :Explore<CR>
-" Mac specific
-nnoremap ≤ :bprev<CR>
-nnoremap ≥ :bnext<CR>
-nnoremap ∂ :bdel<CR>
-nnoremap ∆ :m .+1<CR>==
-nnoremap ˚ :m .-2<CR>==
-nnoremap ´ :Explore<CR>
-
 " COLOR SCHEME / FONT / SCROLLBARS
 set fillchars+=vert:\ 
 "hi vertsplit guifg=fg guibg=bg
 set background=dark
-colorscheme onedark
-set guifont=Inconsolata\ for\ Powerline:h14
+colorscheme hybrid
+set guifont=Source\ Code\ Pro:h14
 set guioptions-=r
 set guioptions-=L
-"hi MatchParen guibg=white guifg=black
-if has('gui_running')
-  set transparency=1
-endif
-
-" CTRLP
-set wildignore+=*/tmp/*,*.so,*.dylib,*.swp,*.zip,*.gz,*.tar,*.class,*.pyc
-
-" AIRLINE
+" Airline
 set laststatus=2
 let g:airline_powerline_fonts=1
-let g:airline_theme='onedark'
 let g:airline#extensions#tabline#enabled=1
+let g:airline_theme='hybridline'
+if has('gui_running')
+  let g:airline_theme='hybrid'
+  set transparency=0
+endif
+
+" CTRLP & AG Searcher
+set wildignore+=*/tmp/*,*.so,*.dylib,*.swp,*.zip,*.gz,*.tar,*.class,*.pyc
+let g:ctrlp_extensions = ['line']
+if executable('ag')
+  set grepprg=ag\ --nogroup\ --nocolor
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+  let g:ctrlp_use_caching = 0
+  let g:ackprg = 'ag --nogroup --nocolor --column'
+endif
 
 " GIT
 let g:gitgutter_enabled = 0
 let g:gitgutter_sign_column_always = 1
 highlight clear SignColumn
 
-" COMMON LISP
-"let g:lisp_rainbow = 1
+" CLOJURE / COMMON LISP
+let g:lisp_rainbow = 0
+let g:paredit_mode = 0
 
 " PYTHON MODE
 let g:pymode_rope = 1
@@ -129,3 +124,19 @@ so ~/.vim/config/dbextprofile.vim
 " CTAGS
 " OS X : brew install ctags
 " :!ctags -R or $ ctags -R .
+
+" KEY MAP
+let mapleader = "\<Space>"
+nnoremap <Leader>e :Explore<CR>
+" Buffers
+noremap <Leader>j :bprev<CR>
+nnoremap <Leader>k :bnext<CR>
+nnoremap <Leader>x :bdel<CR>
+nnoremap <Leader>a :Ack!<Space>
+" Search
+nnoremap <Leader>p :CtrlP<CR>
+nnoremap <Leader>l :CtrlPLine<CR>
+nnoremap <Leader>b :CtrlPBuffer<CR>
+" Git
+nnoremap <Leader>s :Gstatus<CR>
+nnoremap <Leader>d :Gdiff<CR>
