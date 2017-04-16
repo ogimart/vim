@@ -1,47 +1,27 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Ogi Martinovic
-" .vimrc
+" Ogi Martinovic .vimrc
+"
+" Keep it as simple as possible! Keep it close to the stock Vim.
+" Enforce ≈200 vimrc lines and ≈20 plugins.
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" PLUGIN MANAGER
-"   pathogen
-" GENERAL PLUGINS
-"   ctrlp vim-surround supertab ack
-" GIT PLUGINS
-"   vim-fugitive vim-gitgutter
-" COMMON LISP PLUGINS
-"   slimv
-" CLOJURE PLUGINS
-"   vim-fireplace vim-clojure-static vim-clojure-highlight
-" PYTHON PLUGINS
-"   python-mode jedi-vim
-" SQL PLUGINS
-"   dbext.vim
-" COLOR SCHEMES
-"   hybrid vim-airline vim-airline-themes
-" NOT INSTALLED (TO DO)
-"   ale pipe.vim vim-dispatch latex
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" PATHOGEN
 execute pathogen#infect()
-call pathogen#helptags()
 
+" GENERAL
 set nocompatible
 syntax on
 filetype plugin indent on
-
-" GENERAL
 set encoding=utf-8
 set autoread
 set nospell
 set spelllang=en
 set wildignore+=*/target/*,*.jar,*.class,*.zip
+set wildignore+=*/tmp/*,*.so,*.dylib,*.swp,*.gz,*.tar,*.pyc
 set number
 set relativenumber
 set visualbell
 set wildmode=list:longest
+set hidden
 
 " NO BACKUP
 set noswapfile
@@ -58,6 +38,12 @@ set tabstop=2
 set autoindent
 set copyindent
 set smartindent
+
+" NETRW
+let g:netrw_banner=0
+let g:netrw_browse_split=4
+let g:netrw_winsize=25
+let g:netrw_altv=1
 
 " COLOR SCHEME / FONT / SCROLLBARS
 set fillchars+=vert:\ 
@@ -78,65 +64,81 @@ if has('gui_running')
 endif
 
 " CTRLP & AG Searcher
-set wildignore+=*/tmp/*,*.so,*.dylib,*.swp,*.zip,*.gz,*.tar,*.class,*.pyc
+let g:ctrlp_map = ''
+let g:ctrlp_root_markers = ['project.clj', 'pom.xml']
 let g:ctrlp_extensions = ['line']
 if executable('ag')
   set grepprg=ag\ --nogroup\ --nocolor
   let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
   let g:ctrlp_use_caching = 0
-  let g:ackprg = 'ag --nogroup --nocolor --column'
 endif
-
-" GIT
-let g:gitgutter_enabled = 0
-let g:gitgutter_sign_column_always = 1
-highlight clear SignColumn
 
 " CLOJURE / COMMON LISP
 let g:lisp_rainbow = 0
 let g:paredit_mode = 0
 
 " PYTHON MODE
-let g:pymode_rope = 1
+let g:pymode_rope = 0
 let g:pymode_rope_completion = 0
-let g:pymode_doc = 1
-let g:pymode_doc_key = 'K'
-let g:pymode_lint = 1
-let g:pymode_lint_checkers = ["pep8", "pyflakes"]
-let g:pymode_lint_write = 1
+let g:pymode_doc = 0
+let g:pymode_lint = 0
 let g:pymode_syntax = 1
 let g:pymode_syntax_all = 1
 let g:pymode_syntax_indent_errors = g:pymode_syntax_all
 let g:pymode_syntax_space_errors = g:pymode_syntax_all
 let g:pymode_folding = 0
 let g:pymode_virtualenv = 1
+let g:pymode_breakpoint = 1
+let g:pymode_breakpoint_bind = '<leader>b'
+let g:pymode_breakpoint_cmd = ''
 
 " PYTHON JEDI
 let g:jedi#auto_initialization = 1
 let g:jedi#popup_on_dot = 0
 let g:jedi#show_call_signatures = "1"
+let g:jedi#goto_command = "<leader>gt"
+let g:jedi#goto_assignments_command = "<leader>ga"
+let g:jedi#goto_definitions_command = "<leadeer>."
+let g:jedi#documentation_command = "K"
+let g:jedi#usages_command = "<leader>n"
+let g:jedi#completions_command = "<C-Space>"
+let g:jedi#rename_command = "<leader>r"
 let g:SuperTabDefaultCompletionType = "context"
 
 " SQL
 let g:dbext_default_profile = 'pg'
+" let g:dbext_default_profile_name='type=PGSQL:user=:passwd=:dbname=:host='
 so ~/.vim/config/dbextprofile.vim
+
+" ASYNC RUN
+augroup vimrc
+    autocmd User AsyncRunStart call asyncrun#quickfix_toggle(8, 1)
+augroup end
 
 " CTAGS
 " OS X : brew install ctags
 " :!ctags -R or $ ctags -R .
 
-" KEY MAP
-let mapleader = "\<Space>"
-nnoremap <Leader>e :Explore<CR>
+" LEADER MAP
+let mapleader = "\<space>"
+nnoremap <leader>ee :Vexplore<cr>
 " Buffers
-noremap <Leader>j :bprev<CR>
-nnoremap <Leader>k :bnext<CR>
-nnoremap <Leader>x :bdel<CR>
-nnoremap <Leader>a :Ack!<Space>
+nnoremap <leader>j :bprev<cr>
+nnoremap <leader>k :bnext<cr>
+nnoremap <leader>x :bprev\|bdel #<cr>
+nnoremap <leader>d :bdel<cr>
 " Search
-nnoremap <Leader>p :CtrlP<CR>
-nnoremap <Leader>l :CtrlPLine<CR>
-nnoremap <Leader>b :CtrlPBuffer<CR>
+nnoremap <leader>a :GrepperAg<space>
+nnoremap <leader>p :CtrlP<cr>
+nnoremap <leader>b :CtrlPBuffer<cr>
+nnoremap <leader>l :CtrlPLine<cr>
 " Git
-nnoremap <Leader>s :Gstatus<CR>
-nnoremap <Leader>d :Gdiff<CR>
+nnoremap <leader>gg :Git<space>
+nnoremap <leader>gw :Gwrite<cr>
+nnoremap <leader>gs :Gstatus<cr>
+nnoremap <leader>gd :Gvdiff<cr>
+nnoremap <leader>gc :Gcommit<cr>
+nnoremap <leader>gp :Gpush<space>
+nnoremap <leader>ge :Gvsplit<space>
+" Async run
+nnoremap <leader>r :AsyncRun<space>
