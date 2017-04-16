@@ -2,8 +2,9 @@
 
 DIR=`pwd`
 
-### VIM PATHOGEN
-mkdir -p .vim/autoload .vim/bundle && \
+### VIM PATHOGEN CONFIG
+mkdir -p .vim/autoload .vim/bundle .vim/config && \
+touch .vim/config/dbextprofile.vim && \
 curl -LSso .vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
 
 ### GIT CLONE PLUGINS
@@ -32,10 +33,6 @@ git clone git://github.com/vim-scripts/dbext.vim.git
 git clone git://github.com/w0ng/vim-hybrid.git
 git clone git://github.com/bling/vim-airline.git
 git clone git://github.com/vim-airline/vim-airline-themes.git
-
-### SQL Config file
-mkdir -p .vim/config
-touch .vim/config/dbextprofile.vim
 
 ### LINK
 cd ~
