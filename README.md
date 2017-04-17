@@ -1,35 +1,41 @@
 # .vimrc
 My Vim Configuration
 
-## Plugins
+## GitHub Plugins
 
-### General
-'ctrlpvim/ctrlp.vim'
-'mhinz/vim-grepper'
-'skywind3000/asyncrun.vim'
-'tpope/vim-surround'
-'ervandew/supertab'
+### Plugin and Runtime Management
+    `tpope/vim-pathogen`
 
-### Git
-'tpope/vim-fugitive'
+### Search
+    `ctrlpvim/ctrlp.vim`
+    `mhinz/vim-grepper`
+
+### External Async Processes
+    `skywind3000/asyncrun.vim`
+    `w0rp/ale`
+
+### Editing & Completion
+    `tpope/vim-surround`
+    `ervandew/supertab`
+
+### Git & Projects
+    `tpope/vim-fugitive`
+    `airblade/vim-rooter`
 
 ### Clojure & Common Lisp
-'tpope/vim-fireplace'
-'guns/vim-clojure-static'
-'guns/vim-clojure-highlight'
-'kovisoft/slimv'
+    `tpope/vim-fireplace`
+    `guns/vim-clojure-static`
+    `guns/vim-clojure-highlight`
+    `kovisoft/slimv`
 
 ### Python
-'klen/python-mode'
-'davidhalter/jedi-vim'
-'w0rp/ale'
+    `klen/python-mode`
+    `davidhalter/jedi-vim`
 
 ### SQL
-'vim-scripts/dbext.vim'
+    `vim-scripts/dbext.vim`
 
 ### Airline & Color Schemes
-'w0ng/vim-hybrid'
-'bling/vim-airline'
-'vim-airline/vim-airline-themes'
-
-
+    `w0ng/vim-hybrid`
+    `bling/vim-airline`
+    `vim-airline/vim-airline-themes`

@@ -73,6 +73,10 @@ if executable('ag')
   let g:ctrlp_use_caching = 0
 endif
 
+" ROOT DIR & SYM LINKS
+let g:rooter_patterns = ['project.clj', '.git/']
+let g:rooter_resolve_links = 1
+
 " CLOJURE / COMMON LISP
 let g:lisp_rainbow = 0
 let g:paredit_mode = 0
@@ -112,7 +116,7 @@ so ~/.vim/config/dbextprofile.vim
 
 " ASYNC RUN
 augroup vimrc
-    autocmd User AsyncRunStart call asyncrun#quickfix_toggle(8, 1)
+  autocmd User AsyncRunStart call asyncrun#quickfix_toggle(8, 1)
 augroup end
 
 " CTAGS
@@ -121,8 +125,8 @@ augroup end
 
 " LEADER MAP
 let mapleader = "\<space>"
-nnoremap <leader>ee :Vexplore<cr>
 " Buffers
+nnoremap <leader>e :Vexplore<cr>
 nnoremap <leader>j :bprev<cr>
 nnoremap <leader>k :bnext<cr>
 nnoremap <leader>x :bprev\|bdel #<cr>
@@ -141,4 +145,4 @@ nnoremap <leader>gc :Gcommit<cr>
 nnoremap <leader>gp :Gpush<space>
 nnoremap <leader>ge :Gvsplit<space>
 " Async run
-nnoremap <leader>r :AsyncRun<space>
+nnoremap <leader>R :AsyncRun<space>
