@@ -41,7 +41,7 @@ git clone git://github.com/vim-scripts/dbext.vim.git
 
 # Airline & Color Schemes
 git clone git://github.com/w0ng/vim-hybrid.git
-git clone git://github.com/bling/vim-airline.git
+git clone git://github.com/vim-airline/vim-airline.git
 git clone git://github.com/vim-airline/vim-airline-themes.git
 
 ### LINK
