@@ -2,10 +2,42 @@
 " Ogi Martinovic .vimrc
 "
 " Keep it as simple as possible! Keep it close to the stock Vim.
-" Enforce ≈200 vimrc lines and ≈20 plugins.
+" Enforce ≈250 vimrc lines and ≈25 plugins.
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-execute pathogen#infect()
+" VIM PLUGIN MANAGER
+
+call plug#begin('~/.vim/plugged')
+
+" Search
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'mhinz/vim-grepper'
+Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf.vim'
+" External Async Processes & TMUX
+Plug 'skywind3000/asyncrun.vim'
+Plug 'w0rp/ale'
+Plug 'jpalardy/vim-slime'
+" Git & Projects
+Plug 'jreybert/vimagit'
+Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-rooter'
+" Clojure
+Plug 'tpope/vim-fireplace'
+" Python
+Plug 'davidhalter/jedi-vim'
+Plug 'cjrh/vim-conda'
+" SQL
+Plug 'vim-scripts/dbext.vim'
+" Airline & Color Schemes
+Plug 'jnurmine/Zenburn'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+" Editing
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-surround'
+
+call plug#end()
 
 " GENERAL
 set nocompatible
@@ -17,8 +49,6 @@ set nospell
 set spelllang=en
 set wildignore+=*/target/*,*.jar,*.class,*.zip
 set wildignore+=*/tmp/*,*.so,*.dylib,*.swp,*.gz,*.tar,*.pyc
-set number
-set relativenumber
 set visualbell
 set wildmode=list:longest
 set hidden
@@ -49,19 +79,25 @@ let g:netrw_altv=1
 set fillchars+=vert:\ 
 "hi vertsplit guifg=fg guibg=bg
 set background=dark
-colorscheme hybrid
-set guifont=Source\ Code\ Pro:h14
-set guioptions-=r
-set guioptions-=L
-" Airline
-set laststatus=2
-let g:airline_powerline_fonts=1
-let g:airline#extensions#tabline#enabled=1
-let g:airline_theme='hybridline'
+colorscheme zenburn 
 if has('gui_running')
-  let g:airline_theme='hybrid'
+  set number
+  set relativenumber
+  set guifont=Consolas:h13
+  set guioptions-=r
+  set guioptions-=L
   set transparency=0
+  let g:airline_theme='zenburn'
+else
+  let g:airline_theme='hybridline'
 endif
+
+" AIRLINE
+set laststatus=2
+let g:airline_powerline_fonts=0
+let g:airline_left_sep=''
+let g:airline_right_sep=''
+let g:airline#extensions#tabline#enabled=1
 
 " CTRLP & AG Searcher
 let g:ctrlp_map = ''
@@ -77,24 +113,15 @@ endif
 let g:rooter_patterns = ['project.clj', '.git/']
 let g:rooter_resolve_links = 1
 
-" CLOJURE / COMMON LISP
+" CLOJURE
 let g:lisp_rainbow = 0
 let g:paredit_mode = 0
+" autocmd BufRead,BufNewFile *.clj syn match parens /[(){}\[\]]/ | hi parens ctermfg=gray guifg=DarkGrey
 
-" PYTHON MODE
-let g:pymode_rope = 0
-let g:pymode_rope_completion = 0
-let g:pymode_doc = 0
-let g:pymode_lint = 0
-let g:pymode_syntax = 1
-let g:pymode_syntax_all = 1
-let g:pymode_syntax_indent_errors = g:pymode_syntax_all
-let g:pymode_syntax_space_errors = g:pymode_syntax_all
-let g:pymode_folding = 0
-let g:pymode_virtualenv = 1
-let g:pymode_breakpoint = 1
-let g:pymode_breakpoint_bind = '<leader>b'
-let g:pymode_breakpoint_cmd = ''
+" SLIME
+let g:slime_target = "tmux"
+" let g:slime_default_config = {"socket_name": split($TMUX, ",")[1], "target_pane": ":.1"}
+let g:slime_python_ipython = 1
 
 " PYTHON JEDI
 let g:jedi#auto_initialization = 1
@@ -107,7 +134,9 @@ let g:jedi#documentation_command = "K"
 let g:jedi#usages_command = "<leader>n"
 let g:jedi#completions_command = "<C-Space>"
 let g:jedi#rename_command = "<leader>r"
-let g:SuperTabDefaultCompletionType = "context"
+
+" PYTHON CONDA
+let g:conda_startup_msg_suppress = 1
 
 " SQL
 let g:dbext_default_profile = 'pg'
@@ -119,10 +148,6 @@ augroup vimrc
   autocmd User AsyncRunStart call asyncrun#quickfix_toggle(8, 1)
 augroup end
 
-" CTAGS
-" OS X : brew install ctags
-" :!ctags -R or $ ctags -R .
-
 " LEADER MAP
 let mapleader = "\<space>"
 " Buffers
@@ -133,10 +158,12 @@ nnoremap <leader>x :bprev\|bdel #<cr>
 nnoremap <leader>d :bdel<cr>
 " Search
 nnoremap <leader>a :GrepperAg<space>
+nnoremap <leader>f :Files<cr>
 nnoremap <leader>p :CtrlP<cr>
 nnoremap <leader>b :CtrlPBuffer<cr>
 nnoremap <leader>l :CtrlPLine<cr>
 " Git
+nnoremap <leader>m :Magit<cr>
 nnoremap <leader>gg :Git<space>
 nnoremap <leader>gw :Gwrite<cr>
 nnoremap <leader>gs :Gstatus<cr>
