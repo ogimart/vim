@@ -1,3 +1,9 @@
 # .vimrc
 
-My Vim Configuration
+My terminal ViM 8 Configuration
+
+## External Dependencies
+
+    fzf
+    ag
+    tmux

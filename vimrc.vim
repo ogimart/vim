@@ -1,20 +1,8 @@
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Ogi Martinovic .vimrc
-"
-" Keep it as simple as possible! Keep it close to the stock Vim.
-" Enforce ≈250 vimrc lines and ≈25 plugins.
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" VIM PLUGIN MANAGER
-
+" PLUGINS
 call plug#begin('~/.vim/plugged')
-
 " Search
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'mhinz/vim-grepper'
-Plug '/usr/local/opt/fzf'
-Plug 'junegunn/fzf.vim'
-" External Async Processes & TMUX
+Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
+" External Async Processes & tmux
 Plug 'skywind3000/asyncrun.vim'
 Plug 'w0rp/ale'
 Plug 'jpalardy/vim-slime'
@@ -31,12 +19,10 @@ Plug 'cjrh/vim-conda'
 Plug 'vim-scripts/dbext.vim'
 " Airline & Color Schemes
 Plug 'jnurmine/Zenburn'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
 " Editing
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
-
 call plug#end()
 
 " GENERAL
@@ -49,9 +35,10 @@ set nospell
 set spelllang=en
 set wildignore+=*/target/*,*.jar,*.class,*.zip
 set wildignore+=*/tmp/*,*.so,*.dylib,*.swp,*.gz,*.tar,*.pyc
-set visualbell
+" set visualbell
 set wildmode=list:longest
 set hidden
+set ttimeoutlen=20
 
 " NO BACKUP
 set noswapfile
@@ -75,22 +62,14 @@ let g:netrw_browse_split=4
 let g:netrw_winsize=25
 let g:netrw_altv=1
 
-" COLOR SCHEME / FONT / SCROLLBARS
+" COLOR SCHEME
 set fillchars+=vert:\ 
-"hi vertsplit guifg=fg guibg=bg
+hi vertsplit guifg=fg guibg=bg
 set background=dark
-colorscheme zenburn 
-if has('gui_running')
-  set number
-  set relativenumber
-  set guifont=Consolas:h13
-  set guioptions-=r
-  set guioptions-=L
-  set transparency=0
-  let g:airline_theme='zenburn'
-else
-  let g:airline_theme='hybridline'
-endif
+colorscheme zenburn
+let g:airline_theme='hybridline'
+autocmd InsertEnter,InsertLeave * set cul!
+highlight clear SignColumn
 
 " AIRLINE
 set laststatus=2
@@ -98,32 +77,26 @@ let g:airline_powerline_fonts=0
 let g:airline_left_sep=''
 let g:airline_right_sep=''
 let g:airline#extensions#tabline#enabled=1
+let g:airline#extensions#ale#enabled=1
 
-" CTRLP & AG Searcher
-let g:ctrlp_map = ''
-let g:ctrlp_root_markers = ['project.clj', 'pom.xml']
-let g:ctrlp_extensions = ['line']
-if executable('ag')
-  set grepprg=ag\ --nogroup\ --nocolor
-  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-  let g:ctrlp_use_caching = 0
-endif
-
-" ROOT DIR & SYM LINKS
+" ROOT DIR
 let g:rooter_patterns = ['project.clj', '.git/']
 let g:rooter_resolve_links = 1
+let g:rooter_silent_chdir = 1
+
+" FZF & Search
+let g:fzf_layout = { 'down': '~20%' }
+if executable('ag')
+  set grepprg=ag\ --nogroup\ --nocolor
+endif
+let g:ale_set_highlights = 0
 
 " CLOJURE
 let g:lisp_rainbow = 0
 let g:paredit_mode = 0
-" autocmd BufRead,BufNewFile *.clj syn match parens /[(){}\[\]]/ | hi parens ctermfg=gray guifg=DarkGrey
+hi MatchParen cterm=bold ctermbg=none ctermfg=white
 
-" SLIME
-let g:slime_target = "tmux"
-" let g:slime_default_config = {"socket_name": split($TMUX, ",")[1], "target_pane": ":.1"}
-let g:slime_python_ipython = 1
-
-" PYTHON JEDI
+" PYTHON
 let g:jedi#auto_initialization = 1
 let g:jedi#popup_on_dot = 0
 let g:jedi#show_call_signatures = "1"
@@ -134,9 +107,12 @@ let g:jedi#documentation_command = "K"
 let g:jedi#usages_command = "<leader>n"
 let g:jedi#completions_command = "<C-Space>"
 let g:jedi#rename_command = "<leader>r"
-
-" PYTHON CONDA
 let g:conda_startup_msg_suppress = 1
+
+" SLIME
+let g:slime_target = "tmux"
+" let g:slime_default_config = {"socket_name": split($TMUX, ",")[1], "target_pane": ":.1"}
+let g:slime_python_ipython = 1
 
 " SQL
 let g:dbext_default_profile = 'pg'
@@ -157,11 +133,10 @@ nnoremap <leader>k :bnext<cr>
 nnoremap <leader>x :bprev\|bdel #<cr>
 nnoremap <leader>d :bdel<cr>
 " Search
-nnoremap <leader>a :GrepperAg<space>
+nnoremap <leader>a :Ag<cr>
 nnoremap <leader>f :Files<cr>
-nnoremap <leader>p :CtrlP<cr>
-nnoremap <leader>b :CtrlPBuffer<cr>
-nnoremap <leader>l :CtrlPLine<cr>
+nnoremap <leader>l :Lines<cr>
+nnoremap <leader>b :Buffers<cr>
 " Git
 nnoremap <leader>m :Magit<cr>
 nnoremap <leader>gg :Git<space>
