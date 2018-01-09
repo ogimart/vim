@@ -39,6 +39,7 @@ set wildignore+=*/tmp/*,*.so,*.dylib,*.swp,*.gz,*.tar,*.pyc
 set wildmode=list:longest
 set hidden
 set ttimeoutlen=20
+set clipboard=unnamed
 
 " NO BACKUP
 set noswapfile
