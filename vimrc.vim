@@ -18,7 +18,7 @@ Plug 'cjrh/vim-conda'
 " SQL
 Plug 'vim-scripts/dbext.vim'
 " Airline & Color Schemes
-Plug 'jnurmine/Zenburn'
+Plug 'nanotech/jellybeans.vim'
 Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
 " Editing
 Plug 'tpope/vim-commentary'
@@ -63,11 +63,15 @@ let g:netrw_winsize=25
 let g:netrw_altv=1
 
 " COLOR SCHEME
-set fillchars+=vert:\ 
-hi vertsplit guifg=fg guibg=bg
 set background=dark
-colorscheme zenburn
-let g:airline_theme='hybridline'
+colorscheme jellybeans
+let g:airline_theme='bubblegum'
+let g:jellybeans_overrides = {
+\    'background': { 'ctermbg': 'none', '256ctermbg': 'none'},
+\}
+set fillchars+=vert:\ 
+hi vertsplit guifg=fg guibg=bg ctermbg=none
+hi MatchParen cterm=bold ctermbg=none ctermfg=white
 autocmd InsertEnter,InsertLeave * set cul!
 highlight clear SignColumn
 
@@ -94,7 +98,6 @@ let g:ale_set_highlights = 0
 " CLOJURE
 let g:lisp_rainbow = 0
 let g:paredit_mode = 0
-hi MatchParen cterm=bold ctermbg=none ctermfg=white
 
 " PYTHON
 let g:jedi#auto_initialization = 1
