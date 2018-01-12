@@ -40,6 +40,7 @@ set wildmode=list:longest
 set hidden
 set ttimeoutlen=20
 set clipboard=unnamed
+set signcolumn=yes
 
 " NO BACKUP
 set noswapfile
