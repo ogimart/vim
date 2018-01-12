@@ -41,6 +41,7 @@ set hidden
 set ttimeoutlen=20
 set clipboard=unnamed
 set signcolumn=yes
+autocmd FileType netrw setlocal signcolumn=no
 
 " NO BACKUP
 set noswapfile
