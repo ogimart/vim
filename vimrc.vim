@@ -23,6 +23,7 @@ Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
 " Editing
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
 call plug#end()
 
 " GENERAL
@@ -35,13 +36,12 @@ set nospell
 set spelllang=en
 set wildignore+=*/target/*,*.jar,*.class,*.zip
 set wildignore+=*/tmp/*,*.so,*.dylib,*.swp,*.gz,*.tar,*.pyc
-" set visualbell
 set wildmode=list:longest
 set hidden
 set ttimeoutlen=20
 set clipboard=unnamed
-set signcolumn=yes
-autocmd FileType netrw setlocal signcolumn=no
+" set signcolumn=yes
+" autocmd FileType netrw setlocal signcolumn=no
 
 " NO BACKUP
 set noswapfile
@@ -88,7 +88,7 @@ let g:fzf_colors =
   \ 'header':  ['fg', 'Comment'] }
 set fillchars+=vert:\ 
 hi vertsplit guifg=fg guibg=bg ctermbg=none
-hi MatchParen cterm=bold ctermbg=none ctermfg=white
+" hi MatchParen cterm=bold ctermbg=none ctermfg=white
 autocmd InsertEnter,InsertLeave * set cul!
 highlight clear SignColumn
 
