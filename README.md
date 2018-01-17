@@ -6,4 +6,3 @@ My terminal ViM 8 Configuration
 
     fzf
     ag
-    tmux
