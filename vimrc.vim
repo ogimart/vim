@@ -11,12 +11,14 @@ Plug 'jreybert/vimagit'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-rooter'
 " Clojure
-Plug 'tpope/vim-fireplace'
+Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
 " Python
-Plug 'davidhalter/jedi-vim'
-Plug 'cjrh/vim-conda'
+Plug 'davidhalter/jedi-vim', { 'for': 'python' }
+Plug 'cjrh/vim-conda', { 'for': 'python' }
+" Prolog
+Plug 'adimit/prolog.vim'
 " SQL
-Plug 'vim-scripts/dbext.vim'
+Plug 'vim-scripts/dbext.vim', { 'for': 'sql' }
 " Airline & Color Schemes
 Plug 'nanotech/jellybeans.vim'
 Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
@@ -129,8 +131,12 @@ let g:jedi#completions_command = "<C-Space>"
 let g:jedi#rename_command = "<leader>r"
 let g:conda_startup_msg_suppress = 1
 
+" PROLOG
+autocmd BufNewFile,BufRead *.pl set filetype=prolog
+
 " SLIME
-let g:slime_target = "tmux"
+let g:slime_target = "vimterminal"
+" let g:slime_target = "tmux"
 " let g:slime_default_config = {"socket_name": split($TMUX, ",")[1], "target_pane": ":.1"}
 let g:slime_python_ipython = 1
 
