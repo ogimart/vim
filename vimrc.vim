@@ -94,6 +94,14 @@ hi vertsplit guifg=fg guibg=bg ctermbg=none
 autocmd InsertEnter,InsertLeave * set cul!
 highlight clear SignColumn
 
+" GUI
+if has('gui_running')
+   set guifont=Consolas:h14
+   set guioptions-=r
+   set guioptions-=L
+   set transparency=5
+endif
+
 " AIRLINE
 set laststatus=2
 let g:airline_powerline_fonts=0
