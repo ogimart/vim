@@ -10,13 +10,13 @@ Plug 'jpalardy/vim-slime'
 Plug 'jreybert/vimagit'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-rooter'
+" C / C++
+" Plug 'justmao945/vim-clang'
 " Clojure
 Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
 " Python
 Plug 'davidhalter/jedi-vim', { 'for': 'python' }
 Plug 'cjrh/vim-conda', { 'for': 'python' }
-" Prolog
-Plug 'adimit/prolog.vim'
 " SQL
 Plug 'vim-scripts/dbext.vim', { 'for': 'sql' }
 " Airline & Color Schemes
@@ -96,7 +96,7 @@ highlight clear SignColumn
 
 " GUI
 if has('gui_running')
-   set guifont=Consolas:h14
+   set guifont=SF\ Mono:h13
    set guioptions-=r
    set guioptions-=L
    set transparency=5
@@ -107,49 +107,46 @@ set laststatus=2
 let g:airline_powerline_fonts=0
 let g:airline_left_sep=''
 let g:airline_right_sep=''
-let g:airline#extensions#tabline#enabled=1
+let g:airline#extensions#tabline#enabled=0
 let g:airline#extensions#ale#enabled=1
 
 " ROOT DIR
-let g:rooter_patterns = ['project.clj', '.git/']
-let g:rooter_resolve_links = 1
-let g:rooter_silent_chdir = 1
+let g:rooter_patterns=['project.clj', '.git/']
+let g:rooter_resolve_links=1
+let g:rooter_silent_chdir=1
 
 " FZF & Search
-let g:fzf_layout = { 'down': '~20%' }
+let g:fzf_layout={'down': '~20%'}
 if executable('ag')
   set grepprg=ag\ --nogroup\ --nocolor
 endif
-let g:ale_set_highlights = 0
+let g:ale_set_highlights=0
 
 " CLOJURE
-let g:lisp_rainbow = 0
-let g:paredit_mode = 0
+let g:lisp_rainbow=0
+let g:paredit_mode=0
 
 " PYTHON
-let g:jedi#auto_initialization = 1
-let g:jedi#popup_on_dot = 0
-let g:jedi#show_call_signatures = "1"
-let g:jedi#goto_command = "<leader>gt"
-let g:jedi#goto_assignments_command = "<leader>ga"
-let g:jedi#goto_definitions_command = "<leadeer>."
-let g:jedi#documentation_command = "K"
-let g:jedi#usages_command = "<leader>n"
-let g:jedi#completions_command = "<C-Space>"
-let g:jedi#rename_command = "<leader>r"
-let g:conda_startup_msg_suppress = 1
-
-" PROLOG
-autocmd BufNewFile,BufRead *.pl set filetype=prolog
+let g:jedi#auto_initialization=1
+let g:jedi#popup_on_dot=0
+let g:jedi#show_call_signatures="1"
+let g:jedi#goto_command="<leader>gt"
+let g:jedi#goto_assignments_command="<leader>ga"
+let g:jedi#goto_definitions_command="<leadeer>."
+let g:jedi#documentation_command="K"
+let g:jedi#usages_command="<leader>n"
+let g:jedi#completions_command="<C-Space>"
+let g:jedi#rename_command="<leader>r"
+let g:conda_startup_msg_suppress=1
 
 " SLIME
-let g:slime_target = "vimterminal"
-" let g:slime_target = "tmux"
-" let g:slime_default_config = {"socket_name": split($TMUX, ",")[1], "target_pane": ":.1"}
-let g:slime_python_ipython = 1
+let g:slime_target="vimterminal"
+" let g:slime_target="tmux"
+" let g:slime_default_config={"socket_name": split($TMUX, ",")[1], "target_pane": ":.1"}
+let g:slime_python_ipython=1
 
 " SQL
-let g:dbext_default_profile = 'pg'
+let g:dbext_default_profile='pg'
 " let g:dbext_default_profile_name='type=PGSQL:user=:passwd=:dbname=:host='
 so ~/.vim/config/dbextprofile.vim
 
