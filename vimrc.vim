@@ -11,9 +11,11 @@ Plug 'jreybert/vimagit'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-rooter'
 " C / C++
-" Plug 'justmao945/vim-clang'
+Plug 'justmao945/vim-clang'
 " Clojure
 Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
+" Common Lisp
+Plug 'l04m33/vlime', { 'rtp': 'vim/' }
 " Python
 Plug 'davidhalter/jedi-vim', { 'for': 'python' }
 Plug 'cjrh/vim-conda', { 'for': 'python' }
@@ -74,6 +76,7 @@ let g:airline_theme='bubblegum'
 let g:jellybeans_overrides = {
 \    'background': { 'ctermbg': 'none', '256ctermbg': 'none'},
 \}
+highlight Normal ctermbg=NONE
 let g:fzf_colors =
 \ { 'fg':      ['fg', 'Normal'],
   \ 'bg':      ['bg', 'Normal'],
@@ -96,7 +99,7 @@ highlight clear SignColumn
 
 " GUI
 if has('gui_running')
-   set guifont=SF\ Mono:h13
+   set guifont=Source\ Code\ Pro:h14
    set guioptions-=r
    set guioptions-=L
    set transparency=5
