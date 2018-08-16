@@ -19,9 +19,14 @@ Plug 'l04m33/vlime', { 'rtp': 'vim/' }
 " Python
 Plug 'davidhalter/jedi-vim', { 'for': 'python' }
 Plug 'cjrh/vim-conda', { 'for': 'python' }
+" Java & Kotlin
+Plug 'udalov/kotlin-vim', { 'for': 'kotlin' }
+Plug 'artur-shaik/vim-javacomplete2', { 'for': 'java' }
 " SQL
 Plug 'vim-scripts/dbext.vim', { 'for': 'sql' }
 " Airline & Color Schemes
+Plug 'jnurmine/Zenburn'
+Plug 'lifepillar/vim-solarized8'
 Plug 'nanotech/jellybeans.vim'
 Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
 " Editing
@@ -72,37 +77,45 @@ let g:netrw_altv=1
 " COLOR SCHEME
 set background=dark
 colorscheme jellybeans
+" colorscheme solarized8
+" colorscheme zenburn
+" let g:airline_theme='solarized'
+" let g:airline_theme='zenburn'
 let g:airline_theme='bubblegum'
 let g:jellybeans_overrides = {
 \    'background': { 'ctermbg': 'none', '256ctermbg': 'none'},
 \}
+" 'bg+':     ['bg', 'CursorLine', 'CursorColumn']
 highlight Normal ctermbg=NONE
-let g:fzf_colors =
-\ { 'fg':      ['fg', 'Normal'],
-  \ 'bg':      ['bg', 'Normal'],
-  \ 'hl':      ['fg', 'Comment'],
-  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-  \ 'hl+':     ['fg', 'Statement'],
-  \ 'info':    ['fg', 'PreProc'],
-  \ 'border':  ['fg', 'Ignore'],
-  \ 'prompt':  ['fg', 'Conditional'],
-  \ 'pointer': ['fg', 'Exception'],
-  \ 'marker':  ['fg', 'Keyword'],
-  \ 'spinner': ['fg', 'Label'],
-  \ 'header':  ['fg', 'Comment'] }
+" let g:fzf_colors =
+"   \ { 'fg':    ['fg', 'Normal'],
+"   \ 'bg':      ['bg', 'Normal'],
+"   \ 'hl':      ['fg', 'Comment'],
+"   \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+"   \ 'bg+':     ['bg', 'Ignore'],
+"   \ 'hl+':     ['fg', 'Statement'],
+"   \ 'info':    ['fg', 'PreProc'],
+"   \ 'border':  ['fg', 'Ignore'],
+"   \ 'prompt':  ['fg', 'Conditional'],
+"   \ 'pointer': ['fg', 'Exception'],
+"   \ 'marker':  ['fg', 'Keyword'],
+"   \ 'spinner': ['fg', 'Label'],
+"   \ 'header':  ['fg', 'Comment'] }
 set fillchars+=vert:\ 
 hi vertsplit guifg=fg guibg=bg ctermbg=none
-" hi MatchParen cterm=bold ctermbg=none ctermfg=white
-autocmd InsertEnter,InsertLeave * set cul!
+hi MatchParen cterm=bold ctermbg=none ctermfg=white
 highlight clear SignColumn
+autocmd BufRead,BufNewFile * syn match parens /[\[\]{}()]/ | hi parens ctermfg=grey
 
 " GUI
 if has('gui_running')
-   set guifont=Source\ Code\ Pro:h14
-   set guioptions-=r
-   set guioptions-=L
-   set transparency=5
+  set guifont=SF\ Mono:h12
+  " set guifont=Source\ Code\ Pro:h14
+  set guioptions-=r
+  set guioptions-=L
+  set transparency=0
+  highlight Cursor guifg=white
+  set guicursor+=a:blinkon0
 endif
 
 " AIRLINE
@@ -142,6 +155,8 @@ let g:jedi#completions_command="<C-Space>"
 let g:jedi#rename_command="<leader>r"
 let g:conda_startup_msg_suppress=1
 
+autocmd FileType java setlocal omnifunc=javacomplete#Complete
+
 " SLIME
 let g:slime_target="vimterminal"
 " let g:slime_target="tmux"
@@ -169,7 +184,7 @@ nnoremap <leader>d :bdel<cr>
 " Search
 nnoremap <leader>a :Ag<cr>
 nnoremap <leader>f :Files<cr>
-nnoremap <leader>l :Lines<cr>
+nnoremap <leader>l :Lines<space>
 nnoremap <leader>b :Buffers<cr>
 " Git
 nnoremap <leader>m :Magit<cr>
@@ -182,3 +197,4 @@ nnoremap <leader>gp :Gpush<space>
 nnoremap <leader>ge :Gvsplit<space>
 " Async run
 nnoremap <leader>R :AsyncRun<space>
+nnoremap <leader>t :AsyncRun pdflatex %<cr>

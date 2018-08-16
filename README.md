@@ -1,6 +1,6 @@
 # .vimrc
 
-My terminal ViM 8 Configuration
+My ViM 8 Configuration
 
 ## External Dependencies
 
