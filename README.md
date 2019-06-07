@@ -1,26 +1,24 @@
-# .vimrc
-
-My Vim 8.1 Configuration
+# My Development Environment
 
 ## Description
 
-  vim, tmux, fzf, ripgrep
+  vim, tmux, zsh, fzf, ripgrep
   Clojure, ClojueScript, Python, Go
 
 ## Dependencies
 
-[tmux](https://github.com/tmux/tmux)
-[fzf](https://github.com/junegunn/fzf)
-[ripgrep](https://github.com/BurntSushi/ripgrep)
+  [tmux](https://github.com/tmux/tmux)
+  [fzf](https://github.com/junegunn/fzf)
+  [ripgrep](https://github.com/BurntSushi/ripgrep)
 
 ## Config
 
-#### zsh
+#### vim
 
-Add my `zshrc.sh` to `~/.zshrc`:
+Install vim plugins and link `~/.vimrc` to my `vimrc.vim`:
 
   ```bash
-  source ~/path-to-devenv/zshrc.sh
+  ./vim-config
   ```
 
 #### tmux
@@ -28,15 +26,15 @@ Add my `zshrc.sh` to `~/.zshrc`:
 Link `~/.tmux.conf` to my `tmux.conf`:
 
   ```bash
-  ./config-tmux.sh
+  ./tmux-config
   ```
 
-#### vim
+#### zsh
 
-Install vim plugins and link `~/.vimrc` to my `vimrc.vim`:
+Source my `.zshrc` in `~/.zshrc`:
 
   ```bash
-  ./config-vim.sh
+  ./zsh-config
   ```
 
 ## Fonts
@@ -45,5 +43,5 @@ Install vim plugins and link `~/.vimrc` to my `vimrc.vim`:
 
 ## Color Schemes
 
-[iTerm2 Nord](https://github.com/arcticicestudio/nord-iterm2)
-[Vim Nord](https://github.com/arcticicestudio/nord-vim)
+  [iTerm2 Nord](https://github.com/arcticicestudio/nord-iterm2)
+  [Vim Nord](https://github.com/arcticicestudio/nord-vim)
