@@ -2,13 +2,13 @@
 
 ## Description
 
-  vim, tmux, zsh, fzf, ripgrep
+  vim, tmux, zsh, fzf, ripgrep  
   Clojure, ClojueScript, Python, Go
 
 ## Dependencies
 
-  [tmux](https://github.com/tmux/tmux)
-  [fzf](https://github.com/junegunn/fzf)
+  [tmux](https://github.com/tmux/tmux)  
+  [fzf](https://github.com/junegunn/fzf)  
   [ripgrep](https://github.com/BurntSushi/ripgrep)
 
 ## Config
@@ -43,5 +43,5 @@ Source my `.zshrc` in `~/.zshrc`:
 
 ## Color Schemes
 
-  [iTerm2 Nord](https://github.com/arcticicestudio/nord-iterm2)
-  [Vim Nord](https://github.com/arcticicestudio/nord-vim)
+  [iTerm2 Nord](https://github.com/arcticicestudio/nord-iterm2)  
+  [Vim Nord](https://github.com/arcticicestudio/nord-vim)  
