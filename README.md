@@ -15,7 +15,7 @@
 
 #### vim
 
-Install vim plugins and link `~/.vimrc` to my `vimrc.vim`:
+Install vim plugins and link `~/.vimrc` to my `.vimrc`:
 
   ```bash
   ./vim-config
@@ -23,7 +23,7 @@ Install vim plugins and link `~/.vimrc` to my `vimrc.vim`:
 
 #### tmux
 
-Link `~/.tmux.conf` to my `tmux.conf`:
+Link `~/.tmux.conf` to my `.tmux.conf`:
 
   ```bash
   ./tmux-config
