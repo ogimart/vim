@@ -32,7 +32,7 @@ export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
 # RUST
 export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
 
-#PYTHON
+# PYTHON
 # if command -v pyenv 1>/dev/null 2>&1; then
 #   eval "$(pyenv init -)"
 # fi
@@ -75,7 +75,7 @@ export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!{.git,node_mod
 # "!.git/*"'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND="$FZF_DEFAULT_COMMAND"
-export FZF_DEFAULT_OPTS='--color=dark'
+export FZF_DEFAULT_OPTS='--color=light --color=bg+:#ffffff'
 
 # CTAGS
 alias ctags="`brew --prefix`/bin/ctags"

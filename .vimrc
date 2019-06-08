@@ -2,8 +2,6 @@ set nocompatible
 
 " PLUGINS
 call plug#begin('~/.vim/plugged')
-" Color Scheme
-Plug 'arcticicestudio/nord-vim'
 " Editing
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
@@ -22,6 +20,8 @@ Plug 'tpope/vim-fireplace', {'for': 'clojure'}
 Plug 'davidhalter/jedi-vim', {'for': 'python'}
 Plug 'fatih/vim-go', {'for': 'go'}
 Plug 'SirVer/ultisnips', {'for': 'go'}
+" Color Scheme
+Plug 'cormacrelf/vim-colors-github'
 call plug#end()
 
 " GENERAL
@@ -72,31 +72,22 @@ autocmd FileType netrw setlocal signcolumn=no
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 set termguicolors
-let g:nord_uniform_diff_background=1
-let g:nord_italic=0
-let g:nord_bold=0
-let g:nord_italic_comments=0
-set background=dark
-silent! colorscheme nord
 set fillchars+=vert:│
-hi StatusLine guifg=#ffffff
+set background=light
+silent! colorscheme github
+hi SignColumn guibg=bg
+hi LineNr guibg=bg
+hi CursorLineNr guibg=bg
+hi VertSplit guibg=bg
+hi StatusLine guibg=#505050
 
 " FUZZY SEARCH
-let g:fzf_layout = {'down': '~20%'}
-let g:fzf_colors =
-\ { 'fg':      ['fg', 'Normal'],
-  \ 'bg':      ['bg', 'Normal'],
-  \ 'hl':      ['fg', 'Comment'],
-  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-  \ 'hl+':     ['fg', 'Statement'],
-  \ 'info':    ['fg', 'PreProc'],
-  \ 'border':  ['fg', 'Ignore'],
-  \ 'prompt':  ['fg', 'Conditional'],
-  \ 'pointer': ['fg', 'Exception'],
-  \ 'marker':  ['fg', 'Keyword'],
-  \ 'spinner': ['fg', 'Label'],
-  \ 'header':  ['fg', 'Comment'] }
+let g:fzf_layout={'down': '~20%'}
+let g:fzf_colors={ 'fg':      ['fg', 'Normal'],
+                 \ 'bg':      ['bg', 'Normal'],
+                 \ 'hl':      ['fg', 'Comment'],
+                 \ 'fg+':     ['fg', 'Normal'],
+                 \ 'bg+':     ['bg', 'Normal'] }
 
 " STATUS LINE
 set statusline=
@@ -129,9 +120,6 @@ let g:ale_sign_column_always=1
 let g:ale_completion_enabled=0
 let g:ale_lint_on_enter=0
 let g:ale_lint_on_text_changed='normal'
-
-" GO
-let g:go_highlight_types=1
 
 " PYTHON
 let g:jedi#completions_enabled=0
