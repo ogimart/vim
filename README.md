@@ -5,8 +5,8 @@
 Most of my development is done in Clojure, ClojureScript, Python, and Go on
 MacOS, Debian, Alpine, and Amazon Linux. I occasionally use Emacs and JetBrain
 products, but I find that combination of vim, tmux, zsh, and other unix command
-line utilities is the most efficient for my workflow. This repository contains
-my "dot files".
+line utilities is the most efficient workflow. This repository contains my
+"dot files".
 
 ## Dependencies
 
