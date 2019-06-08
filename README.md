@@ -21,7 +21,7 @@ my "dot files".
 Install vim plugins and link `~/.vimrc` to my `.vimrc`:
 
   ```bash
-  ./vim-config
+  ./config/vim.sh
   ```
 
 #### tmux
@@ -29,7 +29,7 @@ Install vim plugins and link `~/.vimrc` to my `.vimrc`:
 Link `~/.tmux.conf` to my `.tmux.conf`:
 
   ```bash
-  ./tmux-config
+  ./config/tmux.sh
   ```
 
 #### zsh
@@ -37,7 +37,7 @@ Link `~/.tmux.conf` to my `.tmux.conf`:
 Source my `.zshrc` in `~/.zshrc`:
 
   ```bash
-  ./zsh-config
+  ./config/zsh.sh
   ```
 
 ## Fonts
