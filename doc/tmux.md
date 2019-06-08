@@ -1,4 +1,9 @@
-# tmux cheat sheet
+# my tmux config
+
+My minimal tmux config.
+Do not use any plugins and keep original key bindings.
+
+## cheat sheet
 
 ### tmux cli
 
