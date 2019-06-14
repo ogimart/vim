@@ -14,6 +14,14 @@ Dot files for emacs, vim, tmux and zsh.
 
 ## Config
 
+#### emacs
+
+Link `~/.emacs.d/init.el` to my `init.el`:
+
+  ```bash
+  ./config/emacs.sh
+  ```
+
 #### vim
 
 Install vim plugins and link `~/.vimrc` to my `.vimrc`:
