@@ -12,9 +12,8 @@ export PATH=$PATH:"/Applications/Visual Studio Code.app/Contents/Resources/app/b
  export PATH=$PATH:"/Applications/VMware Fusion.app/Contents/Library"
 
 # EMACS
-# alias em='/usr/local/bin/emacs'
-# alias ec='/usr/local/bin/emacsclient'
-alias emacs='/Applications/Emacs.app/Contents/MacOS/Emacs "$@"'
+alias em='open -a /usr/local/opt/emacs-plus/Emacs.app'
+alias ec='/usr/local/opt/emacs-plus/bin/emacsclient'
 
 # COMMON LISP
 alias swank='sbcl --load /Users/ogi/.local/share/nvim/plugged/slimv/slime/start-swank.lisp'
@@ -75,8 +74,11 @@ export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!{.git,node_mod
 # "!.git/*"'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND="$FZF_DEFAULT_COMMAND"
-export FZF_DEFAULT_OPTS='--color=light --color=bg+:#ffffff'
-
+# export FZF_DEFAULT_OPTS='--color=dark --color=bg+:#2F3440'
+export FZF_DEFAULT_OPTS='
+  --color dark,hl:33,hl+:37,fg+:235,bg+:#002B36,fg+:254
+  --color info:254,prompt:37,spinner:108,pointer:235,marker:235
+'
 # CTAGS
 alias ctags="`brew --prefix`/bin/ctags"
 

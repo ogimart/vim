@@ -2,16 +2,14 @@
 
 ## Description
 
-Most of my development is done in Clojure, ClojureScript, Python, and Go on
-MacOS, Debian, Alpine, and Amazon Linux. I occasionally use Emacs and JetBrain
-products, but I find that combination of vim, tmux, zsh, and other unix command
-line utilities is the most efficient workflow. This repository contains my
-"dot files".
+My development evironment for Clojure, ClojureScript, Python, and Go.  
+Dot files for emacs, vim, tmux and zsh.
 
 ## Dependencies
 
   [tmux](https://github.com/tmux/tmux)  
   [fzf](https://github.com/junegunn/fzf)  
+  [ag](https://github.com/ggreer/the_silver_searcher)  
   [ripgrep](https://github.com/BurntSushi/ripgrep)
 
 ## Config
@@ -40,11 +38,12 @@ Source my `.zshrc` in `~/.zshrc`:
   ./config/zsh.sh
   ```
 
-## Fonts
+## Font
 
-[Source Code Pro](https://github.com/adobe-fonts/source-code-pro)
+  [Operator Mono](https://www.typography.com/fonts/operator/overview)
 
-## Color Schemes
+## Color Scheme
 
-  [iTerm2 Nord](https://github.com/arcticicestudio/nord-iterm2)  
-  [Vim Nord](https://github.com/arcticicestudio/nord-vim)  
+  [Solarized](https://ethanschoonover.com/solarized/)
+  [Emacs Solarized](https://github.com/bbatsov/solarized-emacs)
+  [Vim Solarized](https://github.com/lifepillar/vim-solarized8)

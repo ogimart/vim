@@ -21,7 +21,7 @@ Plug 'davidhalter/jedi-vim', {'for': 'python'}
 Plug 'fatih/vim-go', {'for': 'go'}
 Plug 'SirVer/ultisnips', {'for': 'go'}
 " Color Scheme
-Plug 'cormacrelf/vim-colors-github'
+Plug 'lifepillar/vim-solarized8'
 call plug#end()
 
 " GENERAL
@@ -36,6 +36,7 @@ set clipboard=unnamed
 set signcolumn=yes
 set laststatus=2
 set relativenumber
+set wildmenu
 set ttimeoutlen=20
 set lazyredraw
 set list
@@ -54,6 +55,7 @@ set smarttab
 set shiftwidth=2
 set tabstop=2
 autocmd FileType go setlocal tabstop=4 shiftwidth=4
+
 autocmd FileType python setlocal shiftwidth=4 softtabstop=4
 
 " INDENT
@@ -68,26 +70,8 @@ let g:netrw_winsize=25
 let g:netrw_altv=1
 autocmd FileType netrw setlocal signcolumn=no
 
-" COLOR SCHEME
-let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-set termguicolors
-set fillchars+=vert:│
-set background=light
-silent! colorscheme github
-hi SignColumn guibg=bg
-hi LineNr guibg=bg
-hi CursorLineNr guibg=bg
-hi VertSplit guibg=bg
-hi StatusLine guibg=#505050
-
 " FUZZY SEARCH
 let g:fzf_layout={'down': '~20%'}
-let g:fzf_colors={ 'fg':      ['fg', 'Normal'],
-                 \ 'bg':      ['bg', 'Normal'],
-                 \ 'hl':      ['fg', 'Comment'],
-                 \ 'fg+':     ['fg', 'Normal'],
-                 \ 'bg+':     ['bg', 'Normal'] }
 
 " STATUS LINE
 set statusline=
@@ -146,7 +130,7 @@ nnoremap <leader>k :bnext<cr>
 nnoremap <leader>x :bprev\|bdel #<cr>
 nnoremap <leader>d :bdel<cr>
 " Search
-nnoremap <leader>r :Rg 
+nnoremap <leader>s :Rg 
 nnoremap <leader>f :Files<cr>
 nnoremap <leader>b :Buffers<cr>
 nnoremap <leader>l :Lines<cr>
@@ -158,13 +142,27 @@ nnoremap <leader>gd :Gvdiff<cr>
 nnoremap <leader>gc :Gcommit<cr>
 nnoremap <leader>gp :Gpush<space>
 nnoremap <leader>ge :Gvsplit<space>
+" Clojure and ClojureScript Figwheel
+nnoremap <leader>r :Require! <bar> Eval (clojure.test/run-tests)<cr>
+nnoremap <leader>p :Piggieback (figwheel.main.api/repl-env "dev")<cr>
 " Async run
 nnoremap <leader>R :AsyncRun<space>
+nnoremap <leader>J :Job<space>
 nnoremap <leader>U :AsyncRun lein uberjar<cr>
 nnoremap <leader>C :AsyncRun lein clean<cr>
 nnoremap <leader>T :AsyncRun lein test %<cr>
 nnoremap <leader>x :AsyncRun pdflatex %<cr>
 nnoremap <leader>D :AsyncRun open -a "Marked 2" %<cr>
-" CLJ and CLJS Figwheel
-" :nmap ,r :Require! <bar> Eval (clojure.test/run-tests)<CR>
-nnoremap <leader>P :Piggieback (figwheel.main.api/repl-env "dev")<cr>
+
+" COLOR SCHEME
+let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+set termguicolors
+set fillchars+=vert:│
+set background=dark
+let g:nord_italic=0
+let g:nord_bold=0
+let g:nord_underline=1
+let g:nord_uniform_diff_background=1
+silent! colorscheme solarized8_flat
+hi ClojureParen guibg=bg
