@@ -2,7 +2,7 @@
 
 ## Description
 
-My development evironment for Clojure, ClojureScript, Python, and Go.  
+My development environment for Clojure, ClojureScript, Python, and Go.  
 Dot files for emacs, vim, tmux and zsh.
 
 ## Dependencies
@@ -52,6 +52,6 @@ Source my `.zshrc` in `~/.zshrc`:
 
 ## Color Scheme
 
-  [Solarized](https://ethanschoonover.com/solarized/)
-  [Emacs Solarized](https://github.com/bbatsov/solarized-emacs)
+  [Solarized](https://ethanschoonover.com/solarized/)  
+  [Emacs Solarized](https://github.com/bbatsov/solarized-emacs)  
   [Vim Solarized](https://github.com/lifepillar/vim-solarized8)
