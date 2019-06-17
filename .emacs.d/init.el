@@ -318,11 +318,12 @@
 (use-package clj-refactor
   :ensure t
   :defer t
-  :config
+  :init
   (add-hook 'clojure-mode-hook
             (lambda ()
               (clj-refactor-mode 1)
-              (yas-minor-mode 1))))
+              (yas-minor-mode 1)
+              (cljr-add-keybindings-with-prefix "C-c r"))))
 
 
 ;;;; LISP / SCHEME
@@ -617,9 +618,6 @@
   (setq evil-want-integration nil)
   :config
   (evil-mode 1)
-  ;; (setq-default display-line-numbers 'visual
-  ;;               display-line-numbers-widen t
-  ;;               display-line-numbers-current-absolute t)
   (add-to-list 'evil-emacs-state-modes 'ag-mode)
   ;; (add-to-list 'evil-emacs-state-modes 'dired)
   (add-to-list 'evil-emacs-state-modes 'flycheck-error-list-mode)
