@@ -315,6 +315,15 @@
   (add-hook 'cider-mode-hook #'company-mode)
   (setq cider-mode-line "repl"))
 
+(use-package clj-refactor
+  :ensure t
+  :defer t
+  :config
+  (add-hook 'clojure-mode-hook
+            (lambda ()
+              (clj-refactor-mode 1)
+              (yas-minor-mode 1))))
+
 
 ;;;; LISP / SCHEME
 
