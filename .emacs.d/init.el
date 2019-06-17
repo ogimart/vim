@@ -64,6 +64,26 @@
 (show-paren-mode 1)
 (defvar show-paren-delay 0)
 
+;; Visual Bell
+(setq visible-bell nil
+      ring-bell-function 'flash-mode-line)
+(defun flash-mode-line ()
+  (invert-face 'mode-line)
+  (run-with-timer 0.1 nil #'invert-face 'mode-line))
+
+;; Line Numbers
+(defun relative-line-numbers ()
+  (interactive)
+  (setq-local display-line-numbers 'visual))
+
+(defun absolute-line-numbers ()
+  (interactive)
+  (setq-local display-line-numbers 't))
+
+(defun off-line-numbers ()
+  (interactive)
+  (setq-local display-line-numbers 'nil))
+
 
 ;;;; FILES
 
@@ -98,27 +118,6 @@
 
 ;;;; THEME / FONT
 
-(use-package solarized-theme
-  :ensure t
-  :config
-  (setq solarized-distinct-fringe-background nil)
-  (setq solarized-use-variable-pitch nil)
-  (setq solarized-high-contrast-mode-line nil)
-  (setq solarized-use-less-bold t)
-  (setq solarized-use-more-italic nil)
-  (setq solarized-emphasize-indicators nil)
-  (setq solarized-scale-org-headlines nil))
-
-(defun day-theme ()
-  (interactive)
-  (load-theme 'solarized-light t))
-
-(defun night-theme ()
-  (interactive)
-  (load-theme 'solarized-dark t))
-
-(night-theme)
-
 ;; Disable all bold fonts
 (defun disable-bold ()
   (interactive)
@@ -132,6 +131,38 @@
 (defun md-font () (interactive) (set-frame-font "Operator Mono-17"))
 (defun lg-font () (interactive) (set-frame-font "Operator Mono-19"))
 (md-font)
+
+;; Solarized Themes
+(use-package solarized-theme
+  :ensure t
+  :config
+  (setq solarized-distinct-fringe-background nil)
+  (setq solarized-use-variable-pitch nil)
+  (setq solarized-high-contrast-mode-line nil)
+  (setq solarized-use-less-bold t)
+  (setq solarized-use-more-italic nil)
+  (setq solarized-emphasize-indicators nil)
+  (setq solarized-scale-org-headlines nil))
+
+(defun day-theme ()
+  (interactive)
+  (if window-system
+      (progn (load-theme 'solarized-light t)
+             (set-cursor-color "#073642"))
+    (load-theme 'adwaita))
+  (disable-bold)
+  (set-face-attribute 'show-paren-match nil :underline nil :bold t))
+
+(defun night-theme ()
+  (interactive)
+  (if window-system
+      (progn (load-theme 'solarized-dark t)
+             (set-cursor-color "#FDF6E3"))
+    (load-theme 'wombat))
+  (disable-bold)
+  (set-face-attribute 'show-paren-match nil :underline nil :bold t))
+
+(night-theme)
 
 
 ;;;; MODE LINE
@@ -150,17 +181,23 @@
 
 ;;;; IVY / SWIPER
 
+(use-package flx :ensure t)
+
 (use-package ivy
   :ensure t
   :delight ivy-mode
   :config
   (ivy-mode 1)
-  (setq ivy-re-builders-alist '((t . ivy--regex-fuzzy)))
   (setq ivy-format-function 'ivy-format-function-arrow))
 
 (use-package swiper
   :ensure t
-  :bind ("C-;" . 'swiper))
+  :after ivy
+  :bind ("C-;" . 'swiper)
+  :config
+  (setq ivy-re-builders-alist
+        '((swiper . ivy--regex-plus)
+          (t      . ivy--regex-fuzzy))))
 
 
 ;;;; PROJECT
@@ -176,8 +213,6 @@
   :bind ("C-c p" . 'projectile-command-map)
   :config
   (projectile-global-mode)
-  ;; (setq projectile-mode-line-function
-  ;;       '(lambda () (format " P[%s]" (projectile-project-name))))
   (setq projectile-completion-system 'ivy))
 
 (use-package magit
@@ -353,15 +388,14 @@
   :ensure t
   :defer t
   :config
-    (defun projectile-pyenv-mode-set ()
-      "Set pyenv version matching project name."
-      (let ((project (projectile-project-name)))
-        (if (member project (pyenv-mode-versions))
-            (pyenv-mode-set project)
-          (pyenv-mode-unset))))
-
-    (add-hook 'projectile-switch-project-hook 'projectile-pyenv-mode-set)
-    (add-hook 'python-mode-hook 'pyenv-mode))
+  (defun projectile-pyenv-mode-set ()
+    "Set pyenv version matching project name."
+    (let ((project (projectile-project-name)))
+      (if (member project (pyenv-mode-versions))
+          (pyenv-mode-set project)
+        (pyenv-mode-unset))))
+  (add-hook 'projectile-switch-project-hook 'projectile-pyenv-mode-set)
+  (add-hook 'python-mode-hook 'pyenv-mode))
 
 
 ;;;; GO
@@ -465,7 +499,6 @@
         eshell-prompt-regexp (concat "^" (regexp-quote "❯ "))))
 
 
-
 ;; ORG MODE
 
 (use-package org
@@ -541,6 +574,8 @@
 ;; else
 ;;     open -a "Marked 2";
 ;; fi
+;;
+;; Open command: C-c C-c o
 
 (use-package tex
   :ensure auctex
@@ -554,6 +589,14 @@
   (add-hook 'LaTeX-mode-hook 'flyspell-buffer))
 
 
+;; EDITING
+
+(use-package expand-region
+  :ensure t
+  :pin melpa
+  :bind ("C-=" . 'er/expand-region))
+
+
 ;; EVIL
 
 (use-package evil
@@ -565,6 +608,9 @@
   (setq evil-want-integration nil)
   :config
   (evil-mode 1)
+  ;; (setq-default display-line-numbers 'visual
+  ;;               display-line-numbers-widen t
+  ;;               display-line-numbers-current-absolute t)
   (add-to-list 'evil-emacs-state-modes 'ag-mode)
   ;; (add-to-list 'evil-emacs-state-modes 'dired)
   (add-to-list 'evil-emacs-state-modes 'flycheck-error-list-mode)
@@ -584,20 +630,30 @@
   (global-evil-leader-mode)
   (evil-leader/set-leader "<SPC>")
   (evil-leader/set-key
-   ;; emacs
-   "b" 'switch-to-buffer
-   "f" 'find-file
-   "w" 'save-buffer
-   ";" 'comment-line
-   "a" 'ansi-term
-   "g" 'magit-status
-   "e" 'eshell
-   ;; "q" 'sql-connect
-   "k" 'kill-this-buffer
-   ;; projectile
-   "pp" 'projectile-switch-project
-   "pf" 'projectile-find-file
-   "pa" 'projectile-ag))
+    ;; emacs
+    "b" 'switch-to-buffer
+    "f" 'find-file
+    "w" 'save-buffer
+    "c" 'comment-line
+    "a" 'ansi-term
+    "g" 'magit-status
+    "e" 'eshell
+    "s" 'sql-connect
+    "k" 'kill-this-buffer
+    "l" 'swiper
+    ;; line numbers
+    "nr" 'relative-line-numbers
+    "na" 'absolute-line-numbers
+    "no" 'off-line-numbers
+    ;; projectile
+    "pp" 'projectile-switch-project
+    "pf" 'projectile-find-file
+    "pa" 'projectile-ag))
+
+(use-package evil-surround
+  :ensure t
+  :config
+  (global-evil-surround-mode 1))
 
 
 ;;;; SERVER
