@@ -169,15 +169,6 @@
 
 (use-package delight :ensure t)
 
-(use-package smart-mode-line
-  :ensure t
-  :config
-  (setq sml/theme 'respectful)
-  (setq sml/no-confirm-load-theme t)
-  (setq sml/shorten-directory t)
-  (setq sml/shorten-modes t)
-  (sml/setup))
-
 
 ;;;; IVY / SWIPER
 
@@ -208,11 +199,13 @@
 
 (use-package projectile
   :ensure projectile
-  :delight projectile-mode
+  ;; :delight projectile-mode
   :pin melpa-stable
   :bind ("C-c p" . 'projectile-command-map)
   :config
   (projectile-global-mode)
+  (setq projectile-mode-line-function
+        '(lambda () (format " Proj:%s" (projectile-project-name))))
   (setq projectile-completion-system 'ivy))
 
 (use-package magit
@@ -313,7 +306,7 @@
   (setq cider-repl-use-clojure-font-lock t)
   (add-hook 'cider-repl-mode-hook #'company-mode)
   (add-hook 'cider-mode-hook #'company-mode)
-  (setq cider-mode-line "repl"))
+  (setq cider-mode-line " repl"))
 
 (use-package clj-refactor
   :ensure t
