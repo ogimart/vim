@@ -48,7 +48,7 @@ Source my `.zshrc` in `~/.zshrc`:
 
 ## Font
 
-  [Operator Mono](https://www.typography.com/fonts/operator/overview)
+  [Hack](https://sourcefoundry.org/hack)
 
 ## Color Scheme
 

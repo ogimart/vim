@@ -41,7 +41,7 @@
 (setq ns-use-srgb-colorspace t)
 (setq default-frame-alist '((width . 120) (height . 60)))
 (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
-(add-to-list 'default-frame-alist '(ns-appearance . dark))
+(add-to-list 'default-frame-alist '(ns-appearance . light))
 (setq ns-use-proxy-icon nil)
 (setq frame-title-format nil)
 (setq inhibit-splash-screen t)
@@ -127,9 +127,9 @@
         (face-list)))
 
 ;; Font Sizes
-(defun sm-font () (interactive) (set-frame-font "Operator Mono-15"))
-(defun md-font () (interactive) (set-frame-font "Operator Mono-17"))
-(defun lg-font () (interactive) (set-frame-font "Operator Mono-19"))
+(defun sm-font () (interactive) (set-frame-font "Hack-15"))
+(defun md-font () (interactive) (set-frame-font "Hack-17"))
+(defun lg-font () (interactive) (set-frame-font "Hack-19"))
 (md-font)
 
 ;; Solarized Themes
@@ -148,19 +148,19 @@
   (interactive)
   (if window-system
       (progn (load-theme 'solarized-light t)
-             (set-cursor-color "#073642"))
+             (set-cursor-color "black"))
     (load-theme 'adwaita))
-  (disable-bold)
-  (set-face-attribute 'show-paren-match nil :underline nil :bold t))
+  (set-face-attribute 'show-paren-match nil :underline nil :bold nil)
+  (disable-bold))
 
 (defun night-theme ()
   (interactive)
   (if window-system
       (progn (load-theme 'solarized-dark t)
-             (set-cursor-color "#FDF6E3"))
+             (set-cursor-color "white"))
     (load-theme 'wombat))
-  (disable-bold)
-  (set-face-attribute 'show-paren-match nil :underline nil :bold t))
+  (set-face-attribute 'show-paren-match nil :underline nil :bold nil)
+  (disable-bold))
 
 (night-theme)
 
@@ -228,6 +228,7 @@
 
 (use-package company
   :ensure t
+  :defer 3
   :delight company-mode
   :pin melpa-stable
   :bind ("C-x c" . company-complete)
@@ -665,4 +666,5 @@
   (unless (server-running-p)
     (server-start)))
 
+(disable-bold)
 (setq gc-cons-threshold (* 2 1000 1000))
