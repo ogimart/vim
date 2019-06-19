@@ -21,7 +21,7 @@ Plug 'davidhalter/jedi-vim', {'for': 'python'}
 Plug 'fatih/vim-go', {'for': 'go'}
 Plug 'SirVer/ultisnips', {'for': 'go'}
 " Color Scheme
-Plug 'lifepillar/vim-solarized8'
+Plug 'nanotech/jellybeans.vim'
 call plug#end()
 
 " GENERAL
@@ -164,5 +164,8 @@ let g:nord_italic=0
 let g:nord_bold=0
 let g:nord_underline=1
 let g:nord_uniform_diff_background=1
-silent! colorscheme solarized8_flat
+silent! colorscheme jellybeans
+hi SignColumn guibg=bg
+hi VertSplit guibg=bg
+hi StatusLine guifg=white guibg=black
 hi ClojureParen guibg=bg
