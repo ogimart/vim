@@ -1,0 +1,112 @@
+* Emacs Quick Reference
+
+** Core
+
+*** Universal Arguments
+
+| Negative | Digits         | Universal |
+|----------+----------------+-----------|
+| C--      | C-0 to C-9     | C-u       |
+| M--      | M-0 to M-0     |           |
+| C-M--    | C-M-0 to C-M-9 |           |
+
+*** Moving Around Buffer
+
+|           | Char | Word | Line    | Indent | S-exp | List  | Sentence | Paragraph | Page |
+|-----------+------+------+---------+--------+-------+-------+----------+-----------+------|
+| Forward   | C-f  | M-f  | C-n     |        | C-M-f | C-M-n |          | M-}       | C-v  |
+| Backward  | C-b  | M-b  | C-p     | M-m    | C-M-b | C-M-p |          | M-{       | M-v  |
+| Beginning |      |      | C-a     |        |       |       | M-a      |           | M-<  |
+| End       |      |      | C-e     |        |       |       | M-e      |           | M->  |
+| Up        |      |      |         |        |       | C-M-u |          |           |      |
+| Down      |      |      |         |        |       | C-M-d |          |           |      |
+| Goto      |      |      | M-g M-g |        |       |       |          |           |      |
+| Center    |      |      |         |        |       |       |          |           | C-l  |
+
+*** Editing
+
+|           | Char | Word | Line    | S-exp |
+|-----------+------+------+---------+-------|
+| Open      |      |      | C-o     |       |
+| Join      |      |      | M-^     |       |
+| Transpose | C-t  | M-t  | C-x C-t | C-M-t |
+
+*** Marking
+
+| Start Mark     | C-SPC |
+| Mark Word      | M-@   |
+| Expand Region* | C-=   |
+
+*** Deleting / Killing
+
+|          | Char | Word  | Line    | S-exp | Region |
+|----------+------+-------+---------+-------+--------|
+| Forward  | C-d  | M-d   | C-k     | C-M-k | C-w    |
+| Backward | Del  | M-Del | C-DEL   |       |        |
+| Zap Fwd. | M-z  |       |         |       |        |
+| Full     |      |       | C-S-DEL |       |        |
+
+*** Yanking / Kill Ring
+
+|         | Yank | Save |
+|---------+------+------|
+| Current | C-y  | M-w  |
+| Next    | M-y  |      |
+
+*** Search / Replace
+
+|          | Search |
+|----------+--------|
+| Forward  | C-s    |
+| Backward | C-r    |
+| Stop     | ESC    |
+
+|        | Search / Replace | Skip | All | End   |
+|--------+------------------+------+-----+-------|
+| String | M-%              | Del  | !   | Enter |
+
+*** Windows
+
+|                      | Window | Other Window | All   |
+|----------------------+--------+--------------+-------|
+| Delete Active        | C-x 0  |              |       |
+| Delete Others        | C-x 1  |              |       |
+| Split Bellow         | C-x 2  |              |       |
+| Split Right          | C-x 3  |              |       |
+| Switch               | C-x o  |              |       |
+|----------------------+--------+--------------+-------|
+| Make Equal           |        |              | C-x + |
+|----------------------+--------+--------------+-------|
+| Find File            |        | C-x 4 C-f    |       |
+| Open Dired           |        | C-x 4 d      |       |
+| Switch Buffer        |        | C-x 4 b      |       |
+| Kill Buffer & Window |        | C-x 4 0      |       |
+
+*** Dired
+
+|   | Dired |
+|---+-------|
+|   |       |
+
+*** Help
+
+|               | Help  |
+|---------------+-------|
+| Documentation | C-h i |
+| Mode          | C-h m |
+| Function      | C-h f |
+| Variable      | C-h v |
+| Keybinding    | C-h k |
+| Bindings      | C-h b |
+| Apropos       | C-h a |
+| Tutorial      | C-h t |
+
+** Magit
+** Cider
+** Org Mode
+
+#+BEGIN_SRC emacs-lisp :tangle yes
+(defun foo (a b)
+  (+ a b))
+#+END_SRC
+

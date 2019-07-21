@@ -75,10 +75,11 @@ export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!{.git,node_mod
 # "!.git/*"'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND="$FZF_DEFAULT_COMMAND"
-# jellybeans
+# solarized dark
 export FZF_DEFAULT_OPTS='
-  --color fg:188,bg:233,hl:103,fg+:222,bg+:234,hl+:104
-  --color info:182,prompt:110,spinner:107,pointer:167,marker:215'
+  --color dark,hl:33,hl+:37,fg+:235,bg+:#002B36,fg+:254
+  --color info:254,prompt:37,spinner:108,pointer:196,marker:235'
+
 
 # CTAGS
 alias ctags="`brew --prefix`/bin/ctags"

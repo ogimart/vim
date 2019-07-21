@@ -15,13 +15,8 @@ Plug 'jpalardy/vim-slime'
 " Git & Projects
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-rooter'
-" Code
-Plug 'tpope/vim-fireplace', {'for': 'clojure'}
-Plug 'davidhalter/jedi-vim', {'for': 'python'}
-Plug 'fatih/vim-go', {'for': 'go'}
-Plug 'SirVer/ultisnips', {'for': 'go'}
 " Color Scheme
-Plug 'nanotech/jellybeans.vim'
+Plug 'lifepillar/vim-solarized8'
 call plug#end()
 
 " GENERAL
@@ -35,7 +30,6 @@ set spelllang=en
 set clipboard=unnamed
 set signcolumn=yes
 set laststatus=2
-set relativenumber
 set wildmenu
 set ttimeoutlen=20
 set lazyredraw
@@ -160,12 +154,5 @@ let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 set termguicolors
 set fillchars+=vert:│
 set background=dark
-let g:nord_italic=0
-let g:nord_bold=0
-let g:nord_underline=1
-let g:nord_uniform_diff_background=1
-silent! colorscheme jellybeans
-hi SignColumn guibg=bg
+silent! colorscheme solarized8_flat
 hi VertSplit guibg=bg
-hi StatusLine guifg=white guibg=black
-hi ClojureParen guibg=bg

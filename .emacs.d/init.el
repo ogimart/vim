@@ -1,7 +1,7 @@
 ;;;; init.el - Emacs 26.2
 ;;;; Ogi Martinovic, 2019
 
-(setq gc-cons-threshold (* 50 1000 1000))
+(setq gc-cons-threshold (* 50 1024 1024))
 
 ;;;; PACKAGE MANAGER
 
@@ -49,13 +49,18 @@
 (setq column-number-mode t)
 (setq x-underline-at-descent-line t)
 
+;; Syntax Color
+;; (global-font-lock-mode 0)
+
+
 ;; Buffers
 (defalias 'list-buffers 'ibuffer)
 
 ;; Keys
 (when (eq system-type 'darwin)
   (setq mac-command-modifier 'meta)
-  (setq mac-option-modifier 'super))
+  ;; (setq mac-option-modifier 'super)
+  (setq mac-option-modifier 'meta))
 (setq-default indent-tabs-mode nil)
 (setq tab-always-indent 'complete)
 (defalias 'yes-or-no-p 'y-or-n-p)
@@ -63,27 +68,6 @@
 ;; Parens
 (show-paren-mode 1)
 (defvar show-paren-delay 0)
-
-;; Visual Bell
-(setq visible-bell nil
-      ring-bell-function 'flash-mode-line)
-(defun flash-mode-line ()
-  (invert-face 'mode-line)
-  (run-with-timer 0.1 nil #'invert-face 'mode-line))
-
-;; Line Numbers
-(defun relative-line-numbers ()
-  (interactive)
-  (setq-local display-line-numbers 'visual))
-
-(defun absolute-line-numbers ()
-  (interactive)
-  (setq-local display-line-numbers 't))
-
-(defun off-line-numbers ()
-  (interactive)
-  (setq-local display-line-numbers 'nil))
-
 
 ;;;; FILES
 
@@ -102,21 +86,12 @@
         (split-string (buffer-string) "\n" t))
     nil))
 
-;; Backup
-(defvar --backup-dir (concat user-emacs-directory "backups"))
-(if (not (file-exists-p --backup-dir))
-    (make-directory --backup-dir t))
-(setq backup-directory-alist `(("." . ,--backup-dir)))
-(setq make-backup-files t          ; backup of a file the first time it is saved
-      backup-by-copying t          ; copy
-      version-control t            ; version numbers for backup files
-      delete-old-versions t        ; delete excess backup files silently
-      delete-by-moving-to-trash t  ; move to trash
-      auto-save-default t          ; auto-save every buffer that visits a file
-      )
+;; Backup & Autosave
+(setq make-backup-files nil)
+(setq auto-save-default nil)
 
 
-;;;; THEME / FONT
+;;;; THEME / FONT / MODE LINE
 
 ;; Disable all bold fonts
 (defun disable-bold ()
@@ -130,72 +105,72 @@
 (defun sm-font () (interactive) (set-frame-font "Hack-15"))
 (defun md-font () (interactive) (set-frame-font "Hack-17"))
 (defun lg-font () (interactive) (set-frame-font "Hack-19"))
-(md-font)
+(sm-font)
 
-;; Solarized Themes
+;; Solarized Theme
 (use-package solarized-theme
-  :ensure t
-  :config
-  (setq solarized-distinct-fringe-background nil)
-  (setq solarized-use-variable-pitch nil)
-  (setq solarized-high-contrast-mode-line nil)
-  (setq solarized-use-less-bold t)
-  (setq solarized-use-more-italic nil)
-  (setq solarized-emphasize-indicators nil)
-  (setq solarized-scale-org-headlines nil))
+  :ensure t)
 
-(defun day-theme ()
+(defun dk-theme ()
   (interactive)
-  (if window-system
-      (progn (load-theme 'solarized-light t)
-             (set-cursor-color "black"))
-    (load-theme 'adwaita))
-  (set-face-attribute 'show-paren-match nil :underline nil :bold nil)
+  (load-theme 'solarized-dark t)
+  (if (featurep 'helm)
+      (set-face-attribute 'helm-ff-dotted-directory nil
+                          :background nil :foreground nil))
   (disable-bold))
 
-(defun night-theme ()
+(defun lt-theme ()
   (interactive)
-  (if window-system
-      (progn (load-theme 'solarized-dark t)
-             (set-cursor-color "white"))
-    (load-theme 'wombat))
-  (set-face-attribute 'show-paren-match nil :underline nil :bold nil)
+  (load-theme 'solarized-light t)
+  (if (featurep 'helm)
+      (set-face-attribute 'helm-ff-dotted-directory nil
+                          :background nil :foreground nil))
   (disable-bold))
 
-(night-theme)
+(dk-theme)
 
-
-;;;; MODE LINE
-
+;; Modeline
 (use-package delight :ensure t)
 
 
-;;;; IVY / SWIPER
+;;;; HELM
 
-(use-package flx :ensure t)
-
-(use-package ivy
+(use-package helm
   :ensure t
-  :delight ivy-mode
+  :delight helm-mode
+  :bind (("C-x b" . helm-mini)
+         ("C-x C-f" . helm-find-files)
+         ("M-x" . helm-M-x))
+  :init
+  (setq helm-M-x-fuzzy-match        t
+        helm-buffers-fuzzy-matching t
+        helm-recentf-fuzzy-match    t
+        helm-split-window-in-side-p t
+        helm-autoresize-max-height 25
+        helm-autoresize-min-height 25)
   :config
-  (ivy-mode 1)
-  (setq ivy-format-function 'ivy-format-function-arrow))
+  (helm-autoresize-mode nil)
+  (helm-mode 1)
+  (set-face-attribute 'helm-ff-dotted-directory nil
+                      :background nil :foreground nil))
 
-(use-package swiper
+(use-package helm-projectile
   :ensure t
-  :after ivy
-  :bind ("C-;" . 'swiper)
   :config
-  (setq ivy-re-builders-alist
-        '((swiper . ivy--regex-plus)
-          (t      . ivy--regex-fuzzy))))
+  (setq helm-projectile-fuzzy-match t)
+  (helm-projectile-on))
+
+(use-package helm-ag
+  :ensure t
+  :defer t)
+
+(use-package swiper-helm
+  :ensure t
+  :defer t
+  :bind ("C-;" . 'swiper-helm))
 
 
 ;;;; PROJECT
-
-(use-package ag
-  :ensure ag
-  :defer t)
 
 (use-package projectile
   :ensure projectile
@@ -206,15 +181,13 @@
   (projectile-global-mode)
   (setq projectile-mode-line-function
         '(lambda () (format " Proj:%s" (projectile-project-name))))
-  (setq projectile-completion-system 'ivy))
+  (setq projectile-completion-system 'helm))
 
 (use-package magit
   :ensure magit
   :pin melpa-stable
   :defer t
-  :bind ("C-x g" . magit-status)
-  :config
-  (setq magit-completing-read-function 'ivy-completing-read))
+  :bind ("C-x g" . magit-status))
 
 
 ;;;; PROG MODES
@@ -238,6 +211,7 @@
 
 (use-package yasnippet
   :ensure t
+  :defer t
   :delight yas-minor-mode
   :pin melpa
   :init (yas-global-mode 1))
@@ -311,6 +285,7 @@
 
 (use-package clj-refactor
   :ensure t
+  :delight clj-refactor-mode
   :defer t
   :init
   (add-hook 'clojure-mode-hook
@@ -320,7 +295,7 @@
               (cljr-add-keybindings-with-prefix "C-c r"))))
 
 
-;;;; LISP / SCHEME
+;;;; LISP
 
 (use-package lisp-mode
   :defer t
@@ -335,6 +310,11 @@
   (add-hook 'emacs-lisp-mode-hook 'turn-on-eldoc-mode)
   (add-hook 'emacs-lisp-mode-hook 'highlight-numbers-mode)
   (add-hook 'emacs-lisp-mode-hook 'highlight-quoted-mode))
+
+
+;;;; PROLOG
+(autoload 'prolog-mode "prolog" "Major mode for editing Prolog programs." t)
+(add-to-list 'auto-mode-alist '("\\.pl\\'" . prolog-mode))
 
 
 ;;;; PYTHON
@@ -361,7 +341,7 @@
           ;; (concat (projectile-project-root) ""))
     (message "interpreter: python3"))
 
-  ;; ;; break point insert
+  ;; break point insert
   (defun ipdb:insert-trace (arg)
     (interactive "p")
     (open-previous-line arg)
@@ -402,34 +382,8 @@
   (add-hook 'python-mode-hook 'pyenv-mode))
 
 
-;;;; GO
-
-(use-package go-mode
-  :ensure t
-  :pin melpa-stable
-  :defer t
-  :config
-  (add-hook 'go-mode-hook
-            (lambda ()
-              (add-hook 'before-save-hook 'gofmt-before-save)
-              (setq tab-width 4)
-              (setq indent-tabs-mode 1))))
-
-(use-package go-eldoc
-  :ensure t
-  :pin melpa
-  :defer t
-  :init
-  (add-hook 'go-mode-hook 'go-eldoc-setup))
-
-(use-package company-go
-  :ensure t
-  :defer t
-  :pin melpa-stable
-  :init
-  (add-hook 'go-mode-hook
-            (lambda ()
-              (set (make-local-variable 'company-backends) '(company-go)))))
+;;;; C++
+;; todo
 
 
 ;;;; SQL
@@ -514,8 +468,7 @@
   ;; tasks
   (setq org-log-done t)
   (setq org-todo-keywords
-        '((sequence "TODO" "PROG" "HOLD" "|" "DONE" "CNCL")))
-  ;; TODO PROG HOLD CANC
+        '((sequence "TODO" "PROG" "HOLD" "|" "DONE" "CANC")))
   (setq org-agenda-window-setup 'current-window)
 
   ;; agenda
@@ -523,10 +476,10 @@
   (setq org-directory "~/Dropbox/org")
   (setq org-default-notes-file "inbox.org")
   (setq org-agenda-files `(,(concat org-directory "/inbox.org")
+                           ,(concat org-directory "/workframe.org")
                            ,(concat org-directory "/heuristix.org")
                            ,(concat org-directory "/inforisk.org")
                            ,(concat org-directory "/faim.org")
-                           ,(concat org-directory "/canoa.org")
                            ,(concat org-directory "/private.org")))
   (setq org-refile-targets '((nil :maxlevel . 1)
                              (org-agenda-files :maxlevel . 1)))
@@ -539,12 +492,6 @@
            "** %? :appointment:\n   SCHEDULED: %t" :scheduled t)))
 
   ;; theme
-  (defun org-levels-hook ()
-    "Set org-level headers size"
-    (dolist
-        (face '(org-level-1 org-level-2 org-level-3 org-level-4 org-level-5))
-      ;; (set-face-attribute face nil :height 1.0 :background "black")
-      ))
   (add-hook 'org-mode-hook 'org-levels-hook)
   (setq org-src-fontify-natively t)
   (setq org-ellipsis "  …")) ;;"  ⤵" "  ►"
@@ -553,9 +500,10 @@
   :ensure t
   :pin melpa-stable
   :defer t
-  :init
-  (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
-  (setq org-bullets-bullet-list '("⊚" "☉" "○" "◦" "∙"))) ;;  "✱" "⊚"
+  :hook (org-mode . org-bullets-mode))
+
+;; (setq org-bullets-bullet-list '("⊚" "☉" "○" "◦" "∙"))
+;;  "✱" "⊚ *"
 
 
 ;; DOCUMENTS
@@ -600,61 +548,36 @@
   :pin melpa
   :bind ("C-=" . 'er/expand-region))
 
+(defun backward-kill-line (arg)
+  "Kill line backward"
+  (interactive "p")
+  (kill-line (- 1 arg)))
 
-;; EVIL
+(defun top-join-line ()
+  "Join the current line with the line beneath it"
+  (interactive)
+  (delete-indentation 1))
 
-(use-package evil
-  :ensure t
-  :pin melpa-stable
-  :delight undo-tree-mode
-  :init
-  (setq evil-want-keybinding nil)
-  (setq evil-want-integration nil)
-  :config
-  (evil-mode 1)
-  (add-to-list 'evil-emacs-state-modes 'ag-mode)
-  ;; (add-to-list 'evil-emacs-state-modes 'dired)
-  (add-to-list 'evil-emacs-state-modes 'flycheck-error-list-mode)
-  (add-to-list 'evil-emacs-state-modes 'git-rebase-mode))
+(defun open-next-line (arg)
+  "Open line below and indent"
+  (interactive "p")
+  (end-of-line)
+  (open-line arg)
+  (next-line 1)
+  (indent-according-to-mode))
 
-(use-package evil-collection
-  :after evil
-  :ensure t
-  :delight undo-tree-mode
-  :config
-  (evil-collection-init))
+(defun open-previous-line (arg)
+  "Open line above and indent"
+  (interactive "p")
+  (beginning-of-line)
+  (open-line arg)
+  (indent-according-to-mode))
 
-(use-package evil-leader
-  :after evil
-  :ensure t
-  :config
-  (global-evil-leader-mode)
-  (evil-leader/set-leader "<SPC>")
-  (evil-leader/set-key
-    ;; emacs
-    "b" 'switch-to-buffer
-    "f" 'find-file
-    "w" 'save-buffer
-    "c" 'comment-line
-    "a" 'ansi-term
-    "g" 'magit-status
-    "e" 'eshell
-    "s" 'sql-connect
-    "k" 'kill-this-buffer
-    "l" 'swiper
-    ;; line numbers
-    "nr" 'relative-line-numbers
-    "na" 'absolute-line-numbers
-    "no" 'off-line-numbers
-    ;; projectile
-    "pp" 'projectile-switch-project
-    "pf" 'projectile-find-file
-    "pa" 'projectile-ag))
-
-(use-package evil-surround
-  :ensure t
-  :config
-  (global-evil-surround-mode 1))
+(global-set-key (kbd "M-O") 'open-previous-line)
+(global-set-key (kbd "M-o") 'open-next-line)
+(global-set-key (kbd "C-^") 'top-join-line)
+(global-set-key (kbd "C-<backspace>") 'backward-kill-line)
+(global-set-key (kbd "C-x k") 'kill-this-buffer)
 
 
 ;;;; SERVER
@@ -666,5 +589,5 @@
   (unless (server-running-p)
     (server-start)))
 
-(disable-bold)
-(setq gc-cons-threshold (* 2 1000 1000))
+
+(setq gc-cons-threshold (* 2 1024 1024))
