@@ -29,9 +29,6 @@ export GOPATH="${HOME}/.go"
 export GOROOT="$(brew --prefix golang)/libexec"
 export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
 
-# RUST
-export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
-
 # PYTHON
 # if command -v pyenv 1>/dev/null 2>&1; then
 #   eval "$(pyenv init -)"
