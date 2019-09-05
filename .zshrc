@@ -5,6 +5,10 @@
 # alias vi='/usr/local/bin/nvim'
 # export PATH=~/.gem/ruby/2.3.0/bin:$PATH
 
+# VIM
+alias vi='/usr/local/bin/vim'
+
+
 # VSCODE
 export PATH=$PATH:"/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 
@@ -39,6 +43,10 @@ export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
 # export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
 # source /usr/local/bin/virtualenvwrapper.sh
 # pyenv shell 3.6.7 2.7.15
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$HOME/.pyenv/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
 
 # JAVA
 # export JAVA_HOME=$(/usr/libexec/java_home)
@@ -72,9 +80,11 @@ export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!{.git,node_mod
 # "!.git/*"'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND="$FZF_DEFAULT_COMMAND"
-# solarized dark
+# light theme
+export FZF_DEFAULT_OPTS='--color light,hl:#61AFEF,bg+:#FAFAFA'
+# dark theme
 export FZF_DEFAULT_OPTS='
-  --color dark,hl:33,hl+:37,fg+:235,bg+:#002B36,fg+:254
+  --color dark,hl:33,hl+:37,fg+:235,bg+:#282c34,fg+:254
   --color info:254,prompt:37,spinner:108,pointer:196,marker:235'
 
 

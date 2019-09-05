@@ -3,6 +3,7 @@
 
 (setq gc-cons-threshold (* 50 1024 1024))
 
+
 ;;;; PACKAGE MANAGER
 
 ;; Package Sites
@@ -27,6 +28,8 @@
   (package-refresh-contents)
   (package-install 'use-package))
 
+(setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
+
 
 ;;;; UI
 
@@ -41,17 +44,13 @@
 (setq ns-use-srgb-colorspace t)
 (setq default-frame-alist '((width . 120) (height . 60)))
 (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
-(add-to-list 'default-frame-alist '(ns-appearance . light))
+(add-to-list 'default-frame-alist '(ns-appearance . dark))
 (setq ns-use-proxy-icon nil)
 (setq frame-title-format nil)
 (setq inhibit-splash-screen t)
 (setq line-number-mode t)
 (setq column-number-mode t)
 (setq x-underline-at-descent-line t)
-
-;; Syntax Color
-;; (global-font-lock-mode 0)
-
 
 ;; Buffers
 (defalias 'list-buffers 'ibuffer)
@@ -68,6 +67,7 @@
 ;; Parens
 (show-paren-mode 1)
 (defvar show-paren-delay 0)
+
 
 ;;;; FILES
 
@@ -101,33 +101,22 @@
             (set-face-attribute face nil :weight 'normal)))
         (face-list)))
 
-;; Font Sizes
-(defun sm-font () (interactive) (set-frame-font "Hack-15"))
-(defun md-font () (interactive) (set-frame-font "Hack-17"))
-(defun lg-font () (interactive) (set-frame-font "Hack-19"))
-(sm-font)
+;; Font
+(set-frame-font "Hack-15")
 
-;; Solarized Theme
-(use-package solarized-theme
-  :ensure t)
-
-(defun dk-theme ()
-  (interactive)
-  (load-theme 'solarized-dark t)
-  (if (featurep 'helm)
-      (set-face-attribute 'helm-ff-dotted-directory nil
-                          :background nil :foreground nil))
-  (disable-bold))
-
-(defun lt-theme ()
-  (interactive)
-  (load-theme 'solarized-light t)
-  (if (featurep 'helm)
-      (set-face-attribute 'helm-ff-dotted-directory nil
-                          :background nil :foreground nil))
-  (disable-bold))
-
-(dk-theme)
+;; Theme
+(use-package doom-themes
+  :ensure t
+  :pin melpa
+  :config
+  (setq doom-themes-enable-bold nil
+        doom-themes-enable-italic nil)
+  (load-theme 'doom-vibrant t)
+  (doom-themes-visual-bell-config)
+  (doom-themes-org-config)
+  ;; (set-face-attribute 'show-paren-match nil
+  ;;                     :bold nil :underline nil :background nil :foreground "white")
+  (set-cursor-color "white"))
 
 ;; Modeline
 (use-package delight :ensure t)
@@ -275,7 +264,7 @@
 
 (use-package cider
   :ensure t
-  :pin melpa
+  :pin melpa-stable
   :defer t
   :config
   (setq cider-repl-use-clojure-font-lock t)
@@ -294,9 +283,6 @@
               (yas-minor-mode 1)
               (cljr-add-keybindings-with-prefix "C-c r"))))
 
-
-;;;; LISP
-
 (use-package lisp-mode
   :defer t
   :init
@@ -313,6 +299,7 @@
 
 
 ;;;; PROLOG
+
 (autoload 'prolog-mode "prolog" "Major mode for editing Prolog programs." t)
 (add-to-list 'auto-mode-alist '("\\.pl\\'" . prolog-mode))
 
@@ -457,7 +444,7 @@
         eshell-prompt-regexp (concat "^" (regexp-quote "❯ "))))
 
 
-;; ORG MODE
+;;;; ORG MODE
 
 (use-package org
   :defer t
@@ -529,8 +516,8 @@
 ;;
 ;; Open command: C-c C-c o
 
-(use-package tex
-  :ensure auctex
+(use-package auctex
+  :ensure t
   :defer t
   :config
   (setq TeX-auto-save t)
@@ -541,7 +528,7 @@
   (add-hook 'LaTeX-mode-hook 'flyspell-buffer))
 
 
-;; EDITING
+;;;; EDITING
 
 (use-package expand-region
   :ensure t
@@ -577,7 +564,30 @@
 (global-set-key (kbd "M-o") 'open-next-line)
 (global-set-key (kbd "C-^") 'top-join-line)
 (global-set-key (kbd "C-<backspace>") 'backward-kill-line)
+(global-set-key (kbd "C-'") 'delete-backward-char)
 (global-set-key (kbd "C-x k") 'kill-this-buffer)
+
+
+;;;; EVIL
+
+(use-package evil
+  :ensure t
+  :delight undo-tree-mode
+  :defer 2
+  :init
+  (setq evil-want-integration t)
+  (setq evil-want-keybinding nil)
+  (setq evil-disable-insert-state-bindings t)
+  :config
+  (evil-mode 1))
+
+(use-package evil-collection
+  :pin melpa
+  :after evil
+  :defer 3
+  :ensure t
+  :config
+  (evil-collection-init))
 
 
 ;;;; SERVER
@@ -588,6 +598,5 @@
   :config
   (unless (server-running-p)
     (server-start)))
-
 
 (setq gc-cons-threshold (* 2 1024 1024))
