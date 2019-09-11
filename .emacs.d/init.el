@@ -143,15 +143,18 @@
   (set-face-attribute 'helm-ff-dotted-directory nil
                       :background nil :foreground nil))
 
+(use-package ag
+  :ensure t)
+
+(use-package helm-ag
+  :ensure t
+  :after helm)
+
 (use-package helm-projectile
   :ensure t
   :config
   (setq helm-projectile-fuzzy-match t)
   (helm-projectile-on))
-
-(use-package helm-ag
-  :ensure t
-  :defer t)
 
 (use-package swiper-helm
   :ensure t
@@ -272,16 +275,17 @@
   (add-hook 'cider-mode-hook #'company-mode)
   (setq cider-mode-line " repl"))
 
-(use-package clj-refactor
-  :ensure t
-  :delight clj-refactor-mode
-  :defer t
-  :init
-  (add-hook 'clojure-mode-hook
-            (lambda ()
-              (clj-refactor-mode 1)
-              (yas-minor-mode 1)
-              (cljr-add-keybindings-with-prefix "C-c r"))))
+;; (use-package clj-refactor
+;;   :ensure t
+;;   :pin melpa-stable
+;;   :delight clj-refactor-mode
+;;   :defer t
+;;   :init
+;;   (add-hook 'clojure-mode-hook
+;;             (lambda ()
+;;               (clj-refactor-mode 1)
+;;               (yas-minor-mode 1)
+;;               (cljr-add-keybindings-with-prefix "C-c r"))))
 
 (use-package lisp-mode
   :defer t
@@ -573,7 +577,7 @@
 (use-package evil
   :ensure t
   :delight undo-tree-mode
-  :defer 2
+  :defer 1
   :init
   (setq evil-want-integration t)
   (setq evil-want-keybinding nil)
@@ -588,6 +592,26 @@
   :ensure t
   :config
   (evil-collection-init))
+
+(use-package general
+  :after evil
+  :ensure t
+  :config
+  (general-create-definer my-leader-def :prefix "SPC")
+  (my-leader-def 'normal
+    "a" 'org-agenda
+    "b" 'switch-to-buffer
+    "f" 'helm-find-files
+    "w" 'save-buffer
+    ";" 'comment-line
+    "t" 'ansi-term
+    "g" 'magit-status
+    "e" 'eshell
+    ;; "q" 'sql-connect
+    "k" 'kill-this-buffer
+    "p" 'projectile-switch-project
+    "i" 'projectile-find-file
+    "s" 'helm-projectile-ag))
 
 
 ;;;; SERVER
