@@ -51,6 +51,7 @@
 (setq line-number-mode t)
 (setq column-number-mode t)
 (setq x-underline-at-descent-line t)
+(windmove-default-keybindings)
 
 ;; Buffers
 (defalias 'list-buffers 'ibuffer)
@@ -111,11 +112,11 @@
   :config
   (setq doom-themes-enable-bold nil
         doom-themes-enable-italic nil)
-  (load-theme 'doom-vibrant t)
+  (load-theme 'doom-nord t)
   (doom-themes-visual-bell-config)
   (doom-themes-org-config)
-  ;; (set-face-attribute 'show-paren-match nil
-  ;;                     :bold nil :underline nil :background nil :foreground "white")
+  (set-face-attribute 'show-paren-match nil
+                      :bold nil :underline t :background nil :foreground "white")
   (set-cursor-color "white"))
 
 ;; Modeline
@@ -252,7 +253,7 @@
   :delight whitespace-mode
   :config
   (add-hook 'prog-mode-hook 'whitespace-mode)
-  (setq-default whitespace-line-column 100
+  (setq-default whitespace-line-column 120
                 whitespace-style '(face lines-tail trailing)))
 
 
@@ -274,18 +275,6 @@
   (add-hook 'cider-repl-mode-hook #'company-mode)
   (add-hook 'cider-mode-hook #'company-mode)
   (setq cider-mode-line " repl"))
-
-;; (use-package clj-refactor
-;;   :ensure t
-;;   :pin melpa-stable
-;;   :delight clj-refactor-mode
-;;   :defer t
-;;   :init
-;;   (add-hook 'clojure-mode-hook
-;;             (lambda ()
-;;               (clj-refactor-mode 1)
-;;               (yas-minor-mode 1)
-;;               (cljr-add-keybindings-with-prefix "C-c r"))))
 
 (use-package lisp-mode
   :defer t
@@ -570,48 +559,6 @@
 (global-set-key (kbd "C-<backspace>") 'backward-kill-line)
 (global-set-key (kbd "C-'") 'delete-backward-char)
 (global-set-key (kbd "C-x k") 'kill-this-buffer)
-
-
-;;;; EVIL
-
-(use-package evil
-  :ensure t
-  :delight undo-tree-mode
-  :defer 1
-  :init
-  (setq evil-want-integration t)
-  (setq evil-want-keybinding nil)
-  (setq evil-disable-insert-state-bindings t)
-  :config
-  (evil-mode 1))
-
-(use-package evil-collection
-  :pin melpa
-  :after evil
-  :defer 3
-  :ensure t
-  :config
-  (evil-collection-init))
-
-(use-package general
-  :after evil
-  :ensure t
-  :config
-  (general-create-definer my-leader-def :prefix "SPC")
-  (my-leader-def 'normal
-    "a" 'org-agenda
-    "b" 'switch-to-buffer
-    "f" 'helm-find-files
-    "w" 'save-buffer
-    ";" 'comment-line
-    "t" 'ansi-term
-    "g" 'magit-status
-    "e" 'eshell
-    ;; "q" 'sql-connect
-    "k" 'kill-this-buffer
-    "p" 'projectile-switch-project
-    "i" 'projectile-find-file
-    "s" 'helm-projectile-ag))
 
 
 ;;;; SERVER

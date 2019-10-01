@@ -50,9 +50,11 @@ eval "$(pyenv virtualenv-init -)"
 
 # JAVA
 # export JAVA_HOME=$(/usr/libexec/java_home)
+# export JAVA_HOME=/Library/Java/JavaVirtualMachines/amazon-corretto-11.jdk/Contents/Home
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/amazon-corretto-8.jdk/Contents/Home
 # export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk11.0.2.jdk/Contents/Home
 # export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-10.0.2.jdk/Contents/Home
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_181.jdk/Contents/Home
+# export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_181.jdk/Contents/Home
 # export JAVA_HOME=/Library/Java/JavaVirtualMachines/zulu-8.jdk/Contents/Home
 export PATH=$JAVA_HOME/Contents/Home/bin:$PATH
 
@@ -80,13 +82,10 @@ export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!{.git,node_mod
 # "!.git/*"'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND="$FZF_DEFAULT_COMMAND"
-# light theme
-export FZF_DEFAULT_OPTS='--color light,hl:#61AFEF,bg+:#FAFAFA'
-# dark theme
+# nord theme
 export FZF_DEFAULT_OPTS='
-  --color dark,hl:33,hl+:37,fg+:235,bg+:#282c34,fg+:254
-  --color info:254,prompt:37,spinner:108,pointer:196,marker:235'
-
+--color fg:#D8DEE9,bg:#2E3440,hl:#A3BE8C,fg+:#D8DEE9,bg+:#2E3340,hl+:#A3BE8C
+--color pointer:#BF616A,info:#4C566A,spinner:#4C566A,header:#4C566A,prompt:#81A1C1,marker:#EBCB8B'
 
 # CTAGS
 alias ctags="`brew --prefix`/bin/ctags"

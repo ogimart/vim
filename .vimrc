@@ -14,9 +14,8 @@ Plug 'skywind3000/asyncrun.vim'
 Plug 'jpalardy/vim-slime'
 " Git & Projects
 Plug 'tpope/vim-fugitive'
-" Plug 'airblade/vim-rooter'
 " Color Scheme
-Plug 'sonph/onehalf', {'rtp': 'vim/'}
+Plug 'arcticicestudio/nord-vim'
 " Programming
 Plug 'tpope/vim-fireplace'    " clojure
 " Plug 'davidhalter/jedi-vim'   " python
@@ -144,6 +143,7 @@ nnoremap <leader>gc :Gcommit<cr>
 nnoremap <leader>gp :Gpush<space>
 nnoremap <leader>ge :Gvsplit<space>
 " Clojure and ClojureScript Figwheel
+nnoremap <leader>t :.RunTests<cr>
 nnoremap <leader>r :Require! <bar> Eval (clojure.test/run-tests)<cr>
 nnoremap <leader>p :Piggieback (figwheel.main.api/repl-env "dev")<cr>
 " Async run
@@ -161,5 +161,5 @@ let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 set termguicolors
 set fillchars+=vert:│
 set background=dark
-silent! colorscheme onehalfdark
-" hi VertSplit guibg=bg
+let g:nord_uniform_diff_background = 1
+colorscheme nord
