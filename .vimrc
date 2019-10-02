@@ -14,11 +14,12 @@ Plug 'skywind3000/asyncrun.vim'
 Plug 'jpalardy/vim-slime'
 " Git & Projects
 Plug 'tpope/vim-fugitive'
+Plug 'ludovicchabant/vim-gutentags'
 " Color Scheme
 Plug 'arcticicestudio/nord-vim'
-" Programming
-Plug 'tpope/vim-fireplace'    " clojure
-" Plug 'davidhalter/jedi-vim'   " python
+" Languages
+Plug 'tpope/vim-fireplace', {'for': 'clojure'}
+Plug 'davidhalter/jedi-vim', {'for': 'python'}
 call plug#end()
 
 " GENERAL
@@ -50,8 +51,6 @@ set expandtab
 set smarttab
 set shiftwidth=2
 set tabstop=2
-autocmd FileType go setlocal tabstop=4 shiftwidth=4
-
 autocmd FileType python setlocal shiftwidth=4 softtabstop=4
 
 " INDENT
@@ -79,15 +78,6 @@ set statusline+=\ %{&fileencoding?&fileencoding:&encoding}
 set statusline+=\ %{&fileformat}\ \⁞
 set statusline+=\ %3p%%\ %4l:%-3c\ 
 
-" ROOT DIR
-" let g:rooter_patterns=['project.clj', '.git/', 'build.gradle']
-" let g:rooter_resolve_links=1
-" let g:rooter_silent_chdir=1
-
-" augroup vimrc_rooter
-"     autocmd VimEnter * :Rooter
-" augroup end
-
 " ASYNC RUN
 augroup vimrc
   autocmd User AsyncRunStart call asyncrun#quickfix_toggle(8, 1)
@@ -106,8 +96,8 @@ let g:ale_lint_on_enter=0
 let g:ale_lint_on_text_changed='normal'
 
 " PYTHON
-" let g:jedi#completions_enabled=0
-" let g:jedi#rename_command="<leader>r"
+let g:jedi#completions_enabled=0
+let g:jedi#rename_command="<leader>pr"
 command! Flake8 :AsyncRun /usr/local/bin/flake8
 
 " PRETTY PRINT
