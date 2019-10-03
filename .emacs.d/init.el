@@ -112,11 +112,11 @@
   :config
   (setq doom-themes-enable-bold nil
         doom-themes-enable-italic nil)
-  (load-theme 'doom-nord t)
+  (load-theme 'doom-vibrant t)
   (doom-themes-visual-bell-config)
   (doom-themes-org-config)
-  (set-face-attribute 'show-paren-match nil
-                      :bold nil :underline t :background nil :foreground "white")
+  ;; (set-face-attribute 'show-paren-match nil
+  ;;                     :bold nil :underline t :background nil :foreground "white")
   (set-cursor-color "white"))
 
 ;; Modeline
@@ -216,8 +216,14 @@
 
 (use-package dockerfile-mode
   :ensure t
+  :defer t
   :pin melpa-stable
   :mode ("Dockerfile\\'" . dockerfile-mode))
+
+(use-package protobuf-mode
+  :ensure t
+  :defer t
+  :pin melpa-stable)
 
 (use-package yaml-mode
   :ensure t
