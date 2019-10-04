@@ -6,7 +6,7 @@
 # export PATH=~/.gem/ruby/2.3.0/bin:$PATH
 
 # VIM
-alias vi='/usr/local/bin/vim'
+alias vi='/usr/local/bin/nvim'
 
 
 # VSCODE

@@ -22,6 +22,14 @@ Link `~/.emacs.d/init.el` to my `init.el`:
   ./config/emacs.sh
   ```
 
+#### neovim
+
+Install neovim plugins and link `~/.config/nvim to my `nvim`:
+
+  ```bash
+  ./config/nvim.sh
+  ```
+
 #### vim
 
 Install vim plugins and link `~/.vimrc` to my `.vimrc`:
