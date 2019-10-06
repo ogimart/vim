@@ -9,7 +9,7 @@ Dot files for zsh, tmux, and neovim.
 
   [zsh prezto](https://github.com/sorin-ionescu/prezto)  
   [tmux](https://github.com/tmux/tmux)  
-  [neovim](https://neovim.io)
+  [neovim](https://neovim.io)  
   [fzf](https://github.com/junegunn/fzf)  
   [ripgrep](https://github.com/BurntSushi/ripgrep)
 
@@ -46,5 +46,5 @@ Source my `.zshrc` in `~/.zshrc`:
 
 ## Font
 
-  Monaco
+  Monaco  
 

@@ -19,6 +19,10 @@ call plug#end()
 " GENERAL
 set clipboard+=unnamed
 set noshowmode
+set list
+set listchars+=trail:·
+set listchars+=tab:\ \ 
+set listchars+=eol:\ 
 
 " BACKUP
 set noswapfile
