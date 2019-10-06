@@ -1,0 +1,10 @@
+[user]
+  name = Ogi Martinovic
+  email = foo@bar.com
+[merge]
+	tool = vimdiff
+[mergetool]
+  prompt = true
+  keepBackup = false
+[mergetool "vimdiff"]
+  cmd = nvim -d $LOCAL $BASE $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'

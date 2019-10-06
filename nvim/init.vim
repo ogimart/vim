@@ -1,33 +1,23 @@
 call plug#begin('~/.local/share/nvim/plugged')
 " Editing
-Plug 'tpope/vim-commentary'
+Plug 'guns/vim-sexp'
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
 " Fuzzy Search
 Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
-" External & Async Processes
-Plug 'w0rp/ale'
-Plug 'skywind3000/asyncrun.vim'
-Plug 'jpalardy/vim-slime'
-" Tags
-Plug 'ludovicchabant/vim-gutentags'
-" Color Scheme
+" Color Scheme & Status
 Plug 'arcticicestudio/nord-vim'
-" Status
-Plug 'itchyny/lightline.vim'
-Plug 'itchyny/vim-gitbranch'
+Plug 'itchyny/lightline.vim' | Plug 'itchyny/vim-gitbranch'
 " Languages
 Plug 'tpope/vim-fireplace', {'for': 'clojure'}
 Plug 'davidhalter/jedi-vim', {'for': 'python'}
+" Terminal / REPL
+Plug 'kassio/neoterm'
 call plug#end()
-
-" NEOVIM
-let g:python3_host_prog=expand('~/.pyenv/versions/nvim3/bin/python')
-let g:python_host_prog=expand('~/.pyenv/versions/nvim2/bin/python')
 
 " GENERAL
 set clipboard+=unnamed
-set signcolumn=yes
 set noshowmode
 
 " BACKUP
@@ -67,29 +57,11 @@ let g:lightline = {
       \ 'component_function': {
       \   'gitbranch': 'gitbranch#name'
       \ },
+      \ 'subseparator': { 'left': '│', 'right': '│' },
       \ }
 
-" ASYNC RUN
-augroup vimrc
-  autocmd User AsyncRunStart call asyncrun#quickfix_toggle(8, 1)
-augroup end
-
-" SLIME
-let g:slime_target="tmux"
-let g:slime_python_ipython=1
-let g:slime_dont_ask_default=1
-let g:slime_default_config = {"socket_name": "default", "target_pane": "{right-of}"}
-
-" ALE
-let g:ale_sign_column_always=1
-let g:ale_completion_enabled=1
-let g:ale_lint_on_enter=0
-let g:ale_lint_on_text_changed='normal'
-
 " PYTHON
-let g:jedi#completions_enabled=0
-let g:jedi#rename_command="<leader>pr"
-command! Flake8 :AsyncRun /usr/local/bin/flake8
+" let g:jedi#completions_enabled=0
 
 " PRETTY PRINT
 command! PrettyPrintJSON %!python -m json.tool
@@ -101,11 +73,11 @@ autocmd FileType sql setlocal commentstring=--\ %s
 
 " LEADER MAP
 let mapleader="\<space>"
+let maplocalleader = "\\"
 " Editing
 nnoremap <leader>] o<esc>k
 nnoremap <leader>[ O<esc>j
 " Buffers
-nnoremap <leader>e :Vexplore<cr>
 nnoremap <leader>j :bprev<cr>
 nnoremap <leader>k :bnext<cr>
 nnoremap <leader>x :bprev\|bdel #<cr>
@@ -119,15 +91,17 @@ nnoremap <leader>l :Lines<cr>
 nnoremap <leader>t :.RunTests<cr>
 nnoremap <leader>r :Require! <bar> Eval (clojure.test/run-tests)<cr>
 nnoremap <leader>p :Piggieback (figwheel.main.api/repl-env "dev")<cr>
-" Async run
-nnoremap <leader>R :AsyncRun<space>
-nnoremap <leader>J :Job<space>
-nnoremap <leader>X :AsyncRun pdflatex %<cr>
-nnoremap <leader>D :AsyncRun open -a "Marked 2" %<cr>
+" Git vimdiff
+nnoremap <leader>gb :diffget BASE<cr>
+nnoremap <leader>gl :diffget LOCAL<cr>
+nnoremap <leader>gr :diffget REMOTE<cr>
+" Run External
+nnoremap <leader>X :te pdflatex %<cr>
+nnoremap <leader>D :!open -a "Marked 2" %<cr>
 
 " COLOR SCHEME
 set termguicolors
 set fillchars+=vert:│
 set background=dark
-let g:nord_uniform_diff_background = 1
+let g:nord_uniform_diff_background=1
 colorscheme nord
