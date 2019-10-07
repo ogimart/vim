@@ -65,7 +65,15 @@ let g:lightline = {
       \ }
 
 " PYTHON
-" let g:jedi#completions_enabled=0
+let g:jedi#completions_enabled=1
+let g:jedi#popup_on_dot=0
+let g:jedi#goto_command="<leader>pc"
+let g:jedi#goto_assignments_command="<leader>pa"
+let g:jedi#goto_definitions_command="<leader>pd"
+let g:jedi#documentation_command="K"
+let g:jedi#usages_command="<leader>pn"
+let g:jedi#completions_command="<C-Space>"
+let g:jedi#rename_command="<leader>pr"
 
 " PRETTY PRINT
 command! PrettyPrintJSON %!python -m json.tool
@@ -92,9 +100,9 @@ nnoremap <leader>f :Files<cr>
 nnoremap <leader>b :Buffers<cr>
 nnoremap <leader>l :Lines<cr>
 " Clojure and ClojureScript Figwheel
-nnoremap <leader>t :.RunTests<cr>
-nnoremap <leader>r :Require! <bar> Eval (clojure.test/run-tests)<cr>
-nnoremap <leader>p :Piggieback (figwheel.main.api/repl-env "dev")<cr>
+nnoremap <leader>ct :.RunTests<cr>
+nnoremap <leader>cr :Require! <bar> Eval (clojure.test/run-tests)<cr>
+" nnoremap <leader>p :Piggieback (figwheel.main.api/repl-env "dev")<cr>
 " Git vimdiff
 nnoremap <leader>gb :diffget BASE<cr>
 nnoremap <leader>gl :diffget LOCAL<cr>
