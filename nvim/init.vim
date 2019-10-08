@@ -1,19 +1,21 @@
 call plug#begin('~/.local/share/nvim/plugged')
 " Editing
-Plug 'guns/vim-sexp'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-sexp-mappings-for-regular-people' | Plug 'guns/vim-sexp'
 " Fuzzy Search
 Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
-" Color Scheme & Status
-Plug 'arcticicestudio/nord-vim'
-Plug 'itchyny/lightline.vim' | Plug 'itchyny/vim-gitbranch'
+" Git
+Plug 'tpope/vim-fugitive'
 " Languages
 Plug 'tpope/vim-fireplace', {'for': 'clojure'}
 Plug 'davidhalter/jedi-vim', {'for': 'python'}
 " Terminal / REPL
 Plug 'kassio/neoterm'
+" Status & Color Scheme
+Plug 'itchyny/lightline.vim'
+Plug 'arcticicestudio/nord-vim'
 call plug#end()
 
 " GENERAL
@@ -52,14 +54,14 @@ autocmd FileType netrw setlocal signcolumn=no
 let g:fzf_layout={'down': '~20%'}
 
 " STATUS LINE
-let g:lightline = {
+let g:lightline={
       \ 'colorscheme': 'nord',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
       \ },
       \ 'component_function': {
-      \   'gitbranch': 'gitbranch#name'
+      \   'gitbranch': 'fugitive#head'
       \ },
       \ 'subseparator': { 'left': '│', 'right': '│' },
       \ }
@@ -85,25 +87,38 @@ autocmd FileType sql setlocal commentstring=--\ %s
 
 " LEADER MAP
 let mapleader="\<space>"
-let maplocalleader = "\\"
+let maplocalleader="\\"
 " Editing
 nnoremap <leader>] o<esc>k
 nnoremap <leader>[ O<esc>j
 " Buffers
+nnoremap <leader>q :q<cr>
+nnoremap <leader>w :w<cr>
 nnoremap <leader>j :bprev<cr>
 nnoremap <leader>k :bnext<cr>
 nnoremap <leader>x :bprev\|bdel #<cr>
 nnoremap <leader>d :bdel<cr>
 " Search
-nnoremap <leader>s :Rg 
+nnoremap <leader>s :Rg<space>
 nnoremap <leader>f :Files<cr>
 nnoremap <leader>b :Buffers<cr>
 nnoremap <leader>l :Lines<cr>
-" Clojure and ClojureScript Figwheel
+" Clojure and ClojureScript
+nnoremap <leader>cc :FireplaceConnect<cr>
+nnoremap <leader>ce :Eval<cr>
+nnoremap <leader>ck :%Eval<cr>
+nnoremap <leader>ca :Require!<cr>
+nnoremap <leader>cr :Require<cr>
 nnoremap <leader>ct :.RunTests<cr>
-nnoremap <leader>cr :Require! <bar> Eval (clojure.test/run-tests)<cr>
-" nnoremap <leader>p :Piggieback (figwheel.main.api/repl-env "dev")<cr>
-" Git vimdiff
+nnoremap <leader>cn :RunTests<cr>
+nnoremap <leader>cx :Require! <bar> Eval (clojure.test/run-tests)<cr>
+nnoremap <leader>cl :Last<cr>
+" nnoremap <leader>cp :Piggieback (figwheel.main.api/repl-env "dev")<cr>
+" Git diff
+nnoremap <leader>gd :Gvdiff<cr>
+nnoremap <leader>gc :Git commit<space>
+nnoremap <leader>go :Git checkout<space>
+nnoremap <leader>gs :Gstatus<cr>
 nnoremap <leader>gb :diffget BASE<cr>
 nnoremap <leader>gl :diffget LOCAL<cr>
 nnoremap <leader>gr :diffget REMOTE<cr>

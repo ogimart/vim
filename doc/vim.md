@@ -18,6 +18,10 @@ Keep it simple, with the minimal number of pluggins.
   tpope/vim-fireplace - clojure
   davidhalter/jedi-vim - python
 
+## Git
+
+  tpope/vim-fugitive
+
 ## Terminal / REPL
 
   kassio/neoterm
