@@ -97,7 +97,6 @@ nnoremap <leader>w :w<cr>
 nnoremap <leader>j :bprev<cr>
 nnoremap <leader>k :bnext<cr>
 nnoremap <leader>x :bprev\|bdel #<cr>
-nnoremap <leader>d :bdel<cr>
 " Search
 nnoremap <leader>s :Rg<space>
 nnoremap <leader>f :Files<cr>
@@ -114,14 +113,19 @@ nnoremap <leader>cn :RunTests<cr>
 nnoremap <leader>cx :Require! <bar> Eval (clojure.test/run-tests)<cr>
 nnoremap <leader>cl :Last<cr>
 " nnoremap <leader>cp :Piggieback (figwheel.main.api/repl-env "dev")<cr>
-" Git diff
+" Git
 nnoremap <leader>gd :Gvdiff<cr>
 nnoremap <leader>gc :Git commit<space>
 nnoremap <leader>go :Git checkout<space>
+nnoremap <leader>gb :Git checkout -b<space>
 nnoremap <leader>gs :Gstatus<cr>
-nnoremap <leader>gb :diffget BASE<cr>
-nnoremap <leader>gl :diffget LOCAL<cr>
-nnoremap <leader>gr :diffget REMOTE<cr>
+nnoremap <leader>gr :Gread<cr>
+nnoremap <leader>gw :Gwrite<cr>
+" Diff
+nnoremap <leader>db :diffget BASE<cr>
+nnoremap <leader>dl :diffget LOCAL<cr>
+nnoremap <leader>dr :diffget REMOTE<cr>
+nnoremap <leader>du :diffupdate<cr>
 " Run External
 nnoremap <leader>X :te pdflatex %<cr>
 nnoremap <leader>D :!open -a "Marked 2" %<cr>
