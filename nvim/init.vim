@@ -121,7 +121,7 @@ nnoremap <leader>gw :Gwrite<cr>
 nnoremap <leader>gc :Git commit<space>
 nnoremap <leader>go :Git checkout<space>
 nnoremap <leader>gb :Git checkout -b<space>
-nnoremap <leader>gp :Git push <space>
+nnoremap <leader>gp :Git push<space>
 " Diff
 nnoremap <leader>db :diffget BASE<cr>
 nnoremap <leader>dl :diffget LOCAL<cr>
