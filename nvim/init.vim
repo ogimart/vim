@@ -94,11 +94,13 @@ nnoremap <leader>[ O<esc>j
 " Buffers
 nnoremap <leader>q :q<cr>
 nnoremap <leader>w :w<cr>
+nnoremap <leader>wq :wq<cr>
+nnoremap <leader>h :noh<cr>
 nnoremap <leader>j :bprev<cr>
 nnoremap <leader>k :bnext<cr>
 nnoremap <leader>x :bprev\|bdel #<cr>
 " Search
-nnoremap <leader>s :Rg<space>
+nnoremap <leader>r :Rg<space>
 nnoremap <leader>f :Files<cr>
 nnoremap <leader>b :Buffers<cr>
 nnoremap <leader>l :Lines<cr>
