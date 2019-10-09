@@ -115,12 +115,13 @@ nnoremap <leader>cl :Last<cr>
 " nnoremap <leader>cp :Piggieback (figwheel.main.api/repl-env "dev")<cr>
 " Git
 nnoremap <leader>gd :Gvdiff<cr>
-nnoremap <leader>gc :Git commit<space>
-nnoremap <leader>go :Git checkout<space>
-nnoremap <leader>gb :Git checkout -b<space>
 nnoremap <leader>gs :Gstatus<cr>
 nnoremap <leader>gr :Gread<cr>
 nnoremap <leader>gw :Gwrite<cr>
+nnoremap <leader>gc :Git commit<space>
+nnoremap <leader>go :Git checkout<space>
+nnoremap <leader>gb :Git checkout -b<space>
+nnoremap <leader>gp :Git push <space>
 " Diff
 nnoremap <leader>db :diffget BASE<cr>
 nnoremap <leader>dl :diffget LOCAL<cr>
