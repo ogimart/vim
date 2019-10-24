@@ -58,7 +58,7 @@ autocmd  FileType fzf set laststatus=0 | autocmd WinLeave <buffer> set laststatu
 
 " STATUS LINE
 let g:lightline={
-      \ 'colorscheme': 'solarized',
+      \ 'colorscheme': 'nord',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
@@ -139,7 +139,7 @@ nnoremap <leader>D :!open -a "Marked 2" %<cr>
 " COLOR SCHEME
 set termguicolors
 set fillchars+=vert:│
-set background=light
+set background=dark
 let g:nord_uniform_diff_background=1
-colorscheme solarized8
-hi VertSplit guibg=bg guifg=#93a1a1
+colorscheme nord
+" hi VertSplit guibg=bg guifg=#93a1a1
