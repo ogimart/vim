@@ -142,4 +142,5 @@ set fillchars+=vert:│
 set background=dark
 let g:nord_uniform_diff_background=1
 colorscheme nord
+hi ClojureParen guifg=fg
 " hi VertSplit guibg=bg guifg=#93a1a1
