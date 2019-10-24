@@ -16,7 +16,6 @@ Plug 'kassio/neoterm'
 " Status & Color Scheme
 Plug 'itchyny/lightline.vim'
 Plug 'arcticicestudio/nord-vim'
-Plug 'lifepillar/vim-solarized8'
 call plug#end()
 
 " GENERAL
@@ -58,7 +57,7 @@ autocmd  FileType fzf set laststatus=0 | autocmd WinLeave <buffer> set laststatu
 
 " STATUS LINE
 let g:lightline={
-      \ 'colorscheme': 'solarized',
+      \ 'colorscheme': 'nord',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
@@ -139,8 +138,6 @@ nnoremap <leader>D :!open -a "Marked 2" %<cr>
 " COLOR SCHEME
 set termguicolors
 set fillchars+=vert:│
-set background=light
+set background=dark
 let g:nord_uniform_diff_background=1
-colorscheme solarized8
-hi ClojureParen guifg=fg
-hi VertSplit guibg=bg guifg=#93a1a1
+colorscheme nord

@@ -37,13 +37,13 @@ export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!{.git,node_mod
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND="$FZF_DEFAULT_COMMAND"
 # nord theme
-# export FZF_DEFAULT_OPTS='
-# --color fg:#D8DEE9,bg:#2E3440,hl:#A3BE8C,fg+:#D8DEE9,bg+:#2E3340,hl+:#A3BE8C
-# --color pointer:#BF616A,info:#4C566A,spinner:#4C566A,header:#4C566A,prompt:#81A1C1,marker:#EBCB8B'
-# solarized light
 export FZF_DEFAULT_OPTS='
---color fg:240,bg:#FDF6E3,hl:33,fg+:241,bg+:#FDF6E3,hl+:33
---color info:33,prompt:33,pointer:166,marker:166,spinner:33'
+--color fg:#D8DEE9,bg:#2E3440,hl:#A3BE8C,fg+:#D8DEE9,bg+:#2E3340,hl+:#A3BE8C
+--color pointer:#BF616A,info:#4C566A,spinner:#4C566A,header:#4C566A,prompt:#81A1C1,marker:#EBCB8B'
+# solarized light
+# export FZF_DEFAULT_OPTS='
+# --color fg:240,bg:#FDF6E3,hl:33,fg+:241,bg+:#FDF6E3,hl+:33
+# --color info:33,prompt:33,pointer:166,marker:166,spinner:33'
 
 # POSTGRESQL
 export PATH="/usr/local/opt/postgresql/bin:$PATH"
