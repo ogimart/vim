@@ -23,6 +23,9 @@ export JAVA_HOME=/Library/Java/JavaVirtualMachines/amazon-corretto-11.jdk/Conten
 # export JAVA_HOME=/Library/Java/JavaVirtualMachines/amazon-corretto-8.jdk/Contents/Home
 export PATH=$JAVA_HOME/Contents/Home/bin:$PATH
 
+# LISP
+alias sbcl='rlwrap /usr/local/bin/sbcl "$@"'
+
 # GO
 export GOPATH="${HOME}/.go"
 export GOROOT="$(brew --prefix golang)/libexec"
@@ -38,8 +41,8 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND="$FZF_DEFAULT_COMMAND"
 # nord theme
 export FZF_DEFAULT_OPTS='
---color fg:#D8DEE9,bg:#2E3440,hl:#A3BE8C,fg+:#D8DEE9,bg+:#2E3340,hl+:#A3BE8C
---color pointer:#BF616A,info:#4C566A,spinner:#4C566A,header:#4C566A,prompt:#81A1C1,marker:#EBCB8B'
+--color fg:#D8DEE9,bg:#2E3440,hl:#EBCB8B,fg+:#D8DEE9,bg+:#2E3340,hl+:#D08770
+--color pointer:#D08770,info:#4C566A,spinner:#4C566A,header:#4C566A,prompt:#81A1C1,marker:#EBCB8B'
 # solarized light
 # export FZF_DEFAULT_OPTS='
 # --color fg:240,bg:#FDF6E3,hl:33,fg+:241,bg+:#FDF6E3,hl+:33

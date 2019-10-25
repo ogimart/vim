@@ -11,7 +11,9 @@ Plug 'tpope/vim-fugitive'
 " Languages
 Plug 'tpope/vim-fireplace', {'for': 'clojure'}
 Plug 'davidhalter/jedi-vim', {'for': 'python'}
-" Terminal / REPL
+Plug 'kovisoft/slimv', {'for': 'lisp'}
+" Dispatch / Terminal / REPL
+Plug 'tpope/vim-dispatch'
 Plug 'kassio/neoterm'
 " Status & Color Scheme
 Plug 'itchyny/lightline.vim'
@@ -78,6 +80,9 @@ let g:jedi#documentation_command="K"
 let g:jedi#usages_command="<leader>pn"
 let g:jedi#completions_command="<C-Space>"
 let g:jedi#rename_command="<leader>pr"
+
+" LISP
+let g:paredit_mode=0
 
 " PRETTY PRINT
 command! PrettyPrintJSON %!python -m json.tool

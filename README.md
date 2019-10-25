@@ -2,7 +2,7 @@
 
 ## Description
 
-My development environment for Clojure and Python.  
+My development environment for Clojure, Python and Common Lisp.  
 Dot files for zsh, tmux, and neovim.
 
 ## Dependencies
