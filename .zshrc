@@ -45,8 +45,8 @@ export FZF_DEFAULT_OPTS='
 --color pointer:#D08770,info:#4C566A,spinner:#4C566A,header:#4C566A,prompt:#81A1C1,marker:#EBCB8B'
 # solarized light
 # export FZF_DEFAULT_OPTS='
-# --color fg:240,bg:#FDF6E3,hl:33,fg+:241,bg+:#FDF6E3,hl+:33
-# --color info:33,prompt:33,pointer:166,marker:166,spinner:33'
+# --color fg:#657B83,bg:#FDF6E3,hl:#268BD2,fg+:#586E75,bg+:#FDF6E3,hl+:#2AA198
+# --color info:#268BD2,prompt:#268BD2,pointer:166,marker:166,spinner:#268BD2'
 
 # POSTGRESQL
 export PATH="/usr/local/opt/postgresql/bin:$PATH"

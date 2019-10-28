@@ -3,7 +3,8 @@ call plug#begin('~/.local/share/nvim/plugged')
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-sexp-mappings-for-regular-people' | Plug 'guns/vim-sexp'
+Plug 'tpope/vim-sexp-mappings-for-regular-people'
+Plug 'guns/vim-sexp'
 " Fuzzy Search
 Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
 " Git
@@ -11,10 +12,11 @@ Plug 'tpope/vim-fugitive'
 " Languages
 Plug 'tpope/vim-fireplace', {'for': 'clojure'}
 Plug 'davidhalter/jedi-vim', {'for': 'python'}
+Plug 'wlangstroth/vim-racket', {'for': 'racket'}
 Plug 'kovisoft/slimv', {'for': 'lisp'}
-" Dispatch / Terminal / REPL
+" Dispatch / REPL
 Plug 'tpope/vim-dispatch'
-Plug 'kassio/neoterm'
+Plug 'jpalardy/vim-slime'
 " Status & Color Scheme
 Plug 'itchyny/lightline.vim'
 Plug 'arcticicestudio/nord-vim'
@@ -57,18 +59,11 @@ let g:fzf_layout={'down': '~20%'}
 autocmd! FileType fzf
 autocmd  FileType fzf set laststatus=0 | autocmd WinLeave <buffer> set laststatus=2
 
-" STATUS LINE
-let g:lightline={
-      \ 'colorscheme': 'nord',
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
-      \ },
-      \ 'component_function': {
-      \   'gitbranch': 'fugitive#head'
-      \ },
-      \ 'subseparator': { 'left': '│', 'right': '│' },
-      \ }
+" REPL
+" let g:slime_target = "neovim"
+let g:slime_target="tmux"
+let g:slime_default_config={"socket_name": "default", "target_pane": "{right-of}"}
+let g:slime_python_ipython=1
 
 " PYTHON
 let g:jedi#completions_enabled=1
@@ -81,7 +76,7 @@ let g:jedi#usages_command="<leader>pn"
 let g:jedi#completions_command="<C-Space>"
 let g:jedi#rename_command="<leader>pr"
 
-" LISP
+" COMMON LISP
 let g:paredit_mode=0
 
 " PRETTY PRINT
@@ -137,12 +132,28 @@ nnoremap <leader>dl :diffget LOCAL<cr>
 nnoremap <leader>dr :diffget REMOTE<cr>
 nnoremap <leader>du :diffupdate<cr>
 " Run External
-nnoremap <leader>X :te pdflatex %<cr>
-nnoremap <leader>D :!open -a "Marked 2" %<cr>
+nnoremap <leader>X :Dispatch pdflatex %<cr>
+nnoremap <leader>D :Dispatch open -a "Marked 2" %<cr>
+
+" STATUS LINE
+let g:lightline={
+      \ 'colorscheme': 'nord',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+      \ },
+      \ 'component_function': {
+      \   'gitbranch': 'fugitive#head'
+      \ },
+      \ 'subseparator': { 'left': '│', 'right': '│' },
+      \ }
 
 " COLOR SCHEME
 set termguicolors
 set fillchars+=vert:│
-set background=dark
+set background=light
 let g:nord_uniform_diff_background=1
 colorscheme nord
+" hi MatchParen gui=none
+" hi ClojureParen guifg=fg
+" hi VertSplit guifg=fg guibg=bg

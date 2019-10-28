@@ -2,8 +2,13 @@
 
 ## Description
 
-My development environment for Clojure, Python and Common Lisp.  
-Dot files for zsh, tmux, and neovim.
+Dot files for **zsh**, **tmux**, and **neovim**.  
+My development environment for:
+
+  - **Clojure** & **ClojureScript**
+  - **Scheme** (Chez, Racket)
+  - **Common Lisp** (SBCL)
+  - **Python**
 
 ## Dependencies
 
