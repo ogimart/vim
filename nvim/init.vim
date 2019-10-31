@@ -12,7 +12,6 @@ Plug 'tpope/vim-fugitive'
 " Languages
 Plug 'tpope/vim-fireplace', {'for': 'clojure'}
 Plug 'davidhalter/jedi-vim', {'for': 'python'}
-Plug 'wlangstroth/vim-racket', {'for': 'racket'}
 Plug 'kovisoft/slimv', {'for': 'lisp'}
 " Dispatch / REPL
 Plug 'tpope/vim-dispatch'
@@ -151,7 +150,7 @@ let g:lightline={
 " COLOR SCHEME
 set termguicolors
 set fillchars+=vert:│
-set background=light
+set background=dark
 let g:nord_uniform_diff_background=1
 colorscheme nord
 " hi MatchParen gui=none

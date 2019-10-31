@@ -5,9 +5,9 @@
 Dot files for **zsh**, **tmux**, and **neovim**.  
 My development environment for:
 
-  - **Clojure** & **ClojureScript**
-  - **Scheme** (Chez, Racket)
-  - **Common Lisp** (SBCL)
+  - **Clojure**
+  - **Common Lisp**
+  - **Scheme**
   - **Python**
 
 ## Dependencies
