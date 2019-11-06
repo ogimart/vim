@@ -11,8 +11,9 @@ Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-fugitive'
 " Languages
 Plug 'tpope/vim-fireplace', {'for': 'clojure'}
-Plug 'davidhalter/jedi-vim', {'for': 'python'}
 Plug 'kovisoft/slimv', {'for': 'lisp'}
+Plug 'davidhalter/jedi-vim', {'for': 'python'}
+Plug 'justmao945/vim-clang', {'for': 'c'}
 " Dispatch / REPL
 Plug 'tpope/vim-dispatch'
 Plug 'jpalardy/vim-slime'
@@ -77,6 +78,14 @@ let g:jedi#rename_command="<leader>pr"
 
 " COMMON LISP
 let g:paredit_mode=0
+let g:slimv_impl='sbcl'
+let g:slimv_preferred='sbcl'
+let g:slimv_disable_clojure=1
+let g:slimv_disable_scheme=1
+
+" C
+let g:clang_c_options='-std=c11'
+autocmd BufRead,BufNewFile *.h,*.c set filetype=c
 
 " PRETTY PRINT
 command! PrettyPrintJSON %!python -m json.tool

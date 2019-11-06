@@ -103,7 +103,7 @@
         (face-list)))
 
 ;; Font
-(set-frame-font "Hack-15")
+(set-frame-font "Operator Mono-17")
 
 ;; Theme
 (use-package doom-themes
@@ -112,7 +112,7 @@
   :config
   (setq doom-themes-enable-bold nil
         doom-themes-enable-italic nil)
-  (load-theme 'doom-vibrant t)
+  (load-theme 'doom-oceanic-next t)
   (doom-themes-visual-bell-config)
   (doom-themes-org-config)
   ;; (set-face-attribute 'show-paren-match nil
@@ -282,6 +282,17 @@
   (add-hook 'cider-mode-hook #'company-mode)
   (setq cider-mode-line " repl"))
 
+
+;;;; LISP
+
+(use-package slime
+  :ensure t
+  :pin melpa
+  :defer t
+  :config
+  (setq inferior-lisp-program "/usr/local/bin/sbcl")
+  (setq slime-contribs '(slime-fancy)))
+
 (use-package lisp-mode
   :defer t
   :init
@@ -295,6 +306,15 @@
   (add-hook 'emacs-lisp-mode-hook 'turn-on-eldoc-mode)
   (add-hook 'emacs-lisp-mode-hook 'highlight-numbers-mode)
   (add-hook 'emacs-lisp-mode-hook 'highlight-quoted-mode))
+
+;;; SCHEME
+
+(use-package geiser
+  :ensure t
+  :pin melpa
+  :defer t
+  :config
+  (setq geiser-chez-binary "chez"))
 
 
 ;;;; PROLOG
