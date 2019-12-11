@@ -103,7 +103,7 @@
         (face-list)))
 
 ;; Font
-(set-frame-font "Operator Mono-17")
+(set-frame-font "Hack-14")
 
 ;; Theme
 (use-package doom-themes

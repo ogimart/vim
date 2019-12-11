@@ -1,0 +1,32 @@
+set commentary
+set surround
+set ideajoin
+
+let mapleader = " "
+nnoremap <leader>R :source ~/.ideavimrc<cr>
+
+" Navigation
+nmap gd :action GotoDeclaration<cr>
+nmap <c-i> :action Forward<CR>
+nmap <c-o> :action Back<CR>
+nmap <leader>j :action PreviousTab<cr>
+nmap <leader>k :action NextTab<cr>
+nmap <leader>s :action GotoSymbol<cr>
+nmap <leader>b :action RecentFiles<cr>
+nmap <leader>f :action GotoFile<cr>
+nmap <leader>p :action NextProjectWindow<cr>
+
+" Search
+nmap gu :action FindUsages<cr>
+nmap <leader>r :action FindInPath<cr>
+
+" Cursive
+nmap <leader>cp :action :cursive.repl.actions/run-last-sexp<cr>
+nmap <leader>ce :action :cursive.repl.actions/run-top-sexp<cr>
+nmap <leader>cr :action :cursive.repl.actions/load-file<cr>
+nmap <leader>cl :action :cursive.testing.actions/rerun-last-test<cr>
+nmap <leader>cn :action :cursive.testing.actions/run-ns-tests<cr>
+nmap <leader>ct :action :cursive.testing.actions/run-single-test<cr>
+
+" Git
+nmap <leader>gs :action Vcs.QuickListPopupAction<CR>
