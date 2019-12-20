@@ -111,6 +111,7 @@ nnoremap <leader>k :bnext<cr>
 nnoremap <leader>x :bprev\|bdel #<cr>
 " Search
 nnoremap <leader>r :Rg<space>
+nnoremap <leader>s :Rg <c-r>=expand("<cword>")<cr>
 nnoremap <leader>f :Files<cr>
 nnoremap <leader>b :Buffers<cr>
 nnoremap <leader>l :Lines<cr>
