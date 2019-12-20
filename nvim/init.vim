@@ -62,7 +62,7 @@ autocmd  FileType fzf set laststatus=0 | autocmd WinLeave <buffer> set laststatu
 " REPL
 " let g:slime_target = "neovim"
 let g:slime_target="tmux"
-let g:slime_default_config={"socket_name": "default", "target_pane": "{right-of}"}
+let g:slime_default_config={"socket_name": "default", "target_pane": "{bottom-left}"}
 let g:slime_python_ipython=1
 
 " PYTHON
