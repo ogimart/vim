@@ -11,6 +11,7 @@ nmap <c-i> :action Forward<CR>
 nmap <c-o> :action Back<CR>
 nmap <leader>j :action PreviousTab<cr>
 nmap <leader>k :action NextTab<cr>
+nmap <leader>n :action GotoNamespace<cr>
 nmap <leader>s :action GotoSymbol<cr>
 nmap <leader>b :action RecentFiles<cr>
 nmap <leader>f :action GotoFile<cr>
