@@ -125,7 +125,6 @@ nnoremap <leader>ct :.RunTests<cr>
 nnoremap <leader>cn :RunTests<cr>
 nnoremap <leader>cx :Require! <bar> Eval (clojure.test/run-tests)<cr>
 nnoremap <leader>cl :Last<cr>
-nnoremap <leader>cs :Rg \(<c-r>=expand("<cword>")<cr>
 " nnoremap <leader>cp :Piggieback (figwheel.main.api/repl-env "dev")<cr>
 " Git
 nnoremap <leader>gd :Gvdiff<cr>
