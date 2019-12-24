@@ -20,6 +20,7 @@ Plug 'jpalardy/vim-slime'
 " Status & Color Scheme
 Plug 'itchyny/lightline.vim'
 Plug 'arcticicestudio/nord-vim'
+Plug 'lifepillar/vim-solarized8'
 call plug#end()
 
 " GENERAL
@@ -110,11 +111,12 @@ nnoremap <leader>j :bprev<cr>
 nnoremap <leader>k :bnext<cr>
 nnoremap <leader>x :bprev\|bdel #<cr>
 " Search
-nnoremap <leader>r :Rg<space>
-nnoremap <leader>s :Rg <c-r>=expand("<cword>")<cr>
+nnoremap <leader>r :Rg <c-r>=expand("<cword>")<cr>
 nnoremap <leader>f :Files<cr>
 nnoremap <leader>b :Buffers<cr>
 nnoremap <leader>l :Lines<cr>
+" LSP
+" nnoremap <leader>s
 " Clojure and ClojureScript
 nnoremap <leader>cc :FireplaceConnect<cr>
 nnoremap <leader>ce :Eval<cr>
@@ -128,6 +130,7 @@ nnoremap <leader>cl :Last<cr>
 " nnoremap <leader>cp :Piggieback (figwheel.main.api/repl-env "dev")<cr>
 " Git
 nnoremap <leader>gd :Gvdiff<cr>
+nnoremap <leader>gm :Gvdiff master
 nnoremap <leader>gs :Gstatus<cr>
 nnoremap <leader>gr :Gread<cr>
 nnoremap <leader>gw :Gwrite<cr>
@@ -146,7 +149,6 @@ nnoremap <leader>D :Dispatch open -a "Marked 2" %<cr>
 
 " STATUS LINE
 let g:lightline={
-      \ 'colorscheme': 'nord',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
@@ -160,9 +162,15 @@ let g:lightline={
 " COLOR SCHEME
 set termguicolors
 set fillchars+=vert:│
+" Nord
 set background=dark
 let g:nord_uniform_diff_background=1
 colorscheme nord
+let g:lightline.colorscheme='nord'
+" Solarized
+" set background=light
+" colorscheme solarized8
+" let g:lightline.colorscheme='solarized'
 " hi MatchParen gui=none
 " hi ClojureParen guifg=fg
 " hi VertSplit guifg=fg guibg=bg

@@ -52,5 +52,5 @@ Source my `.zshrc` in `~/.zshrc`:
 
 ## Font
 
-  Monaco  
+  [Ubuntu Mono](https://design.ubuntu.com/font)  
 
