@@ -162,15 +162,18 @@ let g:lightline={
 " COLOR SCHEME
 set termguicolors
 set fillchars+=vert:│
-" Nord
-set background=dark
-let g:nord_uniform_diff_background=1
-colorscheme nord
-let g:lightline.colorscheme='nord'
-" Solarized
-" set background=light
-" colorscheme solarized8
-" let g:lightline.colorscheme='solarized'
-" hi MatchParen gui=none
-" hi ClojureParen guifg=fg
-" hi VertSplit guifg=fg guibg=bg
+if $SCHEME == 'dark'
+  " Nord
+  set background=dark
+  let g:nord_uniform_diff_background=1
+  colorscheme nord
+  let g:lightline.colorscheme='nord'
+else
+  " Solarized
+  set background=light
+  colorscheme solarized8
+  let g:lightline.colorscheme='solarized'
+  hi MatchParen gui=none
+  hi ClojureParen guifg=fg
+  hi VertSplit guifg=fg guibg=bg
+endif
