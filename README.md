@@ -52,5 +52,5 @@ Source my `.zshrc` in `~/.zshrc`:
 
 ## Font
 
-  [Ubuntu Mono](https://design.ubuntu.com/font)  
+  [Hack](https://sourcefoundry.org/hack)  
 
