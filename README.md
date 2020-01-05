@@ -47,10 +47,10 @@ Source my `.zshrc` in `~/.zshrc`:
 
 ## Color Scheme
 
-  [iTerm2: Nord](https://github.com/arcticicestudio/nord-iterm2)  
-  [neovim: Nord](https://github.com/arcticicestudio/nord-vim)  
+  [neovim: Gruvbox](https://github.com/gruvbox-community/gruvbox)  
+  [iTerm2: Gruvbox](https://github.com/gruvbox-community/gruvbox-contrib)  
 
 ## Font
 
-  [Hack](https://sourcefoundry.org/hack)  
+  [Operator Mono](https://www.typography.com/fonts/operator/overview)  
 

@@ -19,13 +19,13 @@ Plug 'tpope/vim-dispatch'
 Plug 'jpalardy/vim-slime'
 " Status & Color Scheme
 Plug 'itchyny/lightline.vim'
-Plug 'arcticicestudio/nord-vim'
-Plug 'lifepillar/vim-solarized8'
+Plug 'gruvbox-community/gruvbox'
 call plug#end()
 
 " GENERAL
 set clipboard+=unnamed
 set noshowmode
+set signcolumn=yes
 set list
 set listchars+=trail:·
 set listchars+=tab:\ \ 
@@ -163,17 +163,24 @@ let g:lightline={
 set termguicolors
 set fillchars+=vert:│
 if $SCHEME == 'dark'
-  " Nord
   set background=dark
-  let g:nord_uniform_diff_background=1
-  colorscheme nord
-  let g:lightline.colorscheme='nord'
+  let g:gruvbox_contrast_dark='hard'
+  let g:gruvbox_invert_selection=0
+  let g:gruvbox_sign_column='bg0'
+  let g:lightline.colorscheme='wombat'
+  colorscheme gruvbox
+  hi DiffAdd gui=none guibg=#3c3836
+  hi DiffDelete gui=none guibg=#3c3836
+  hi DiffChange gui=none guibg=#3c3836
 else
-  " Solarized
   set background=light
-  colorscheme solarized8
+  let g:gruvbox_contrast_light='hard'
+  let g:gruvbox_invert_selection=0
+  let g:gruvbox_sign_column='bg0'
   let g:lightline.colorscheme='solarized'
-  hi MatchParen gui=none
-  hi ClojureParen guifg=fg
-  hi VertSplit guifg=fg guibg=bg
+  colorscheme gruvbox
+  hi DiffAdd gui=none guibg=#ebdbb2
+  hi DiffDelete gui=none guibg=#ebdbb2
+  hi DiffChange gui=none guibg=#ebdbb2
 endif
+let g:fzf_colors={}
