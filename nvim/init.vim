@@ -167,7 +167,7 @@ if $SCHEME == 'dark'
   let g:gruvbox_contrast_dark='hard'
   let g:gruvbox_invert_selection=0
   let g:gruvbox_sign_column='bg0'
-  let g:lightline.colorscheme='wombat'
+  let g:lightline.colorscheme='gruvbox'
   colorscheme gruvbox
   hi DiffAdd gui=none guibg=#3c3836
   hi DiffDelete gui=none guibg=#3c3836
@@ -177,7 +177,7 @@ else
   let g:gruvbox_contrast_light='hard'
   let g:gruvbox_invert_selection=0
   let g:gruvbox_sign_column='bg0'
-  let g:lightline.colorscheme='solarized'
+  let g:lightline.colorscheme='gruvbox'
   colorscheme gruvbox
   hi DiffAdd gui=none guibg=#ebdbb2
   hi DiffDelete gui=none guibg=#ebdbb2
