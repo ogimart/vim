@@ -9,6 +9,7 @@ Plug 'guns/vim-sexp'
 Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
 " Git
 Plug 'tpope/vim-fugitive'
+Plug 'rhysd/git-messenger.vim'
 " Languages
 Plug 'tpope/vim-fireplace', {'for': 'clojure'}
 Plug 'kovisoft/slimv', {'for': 'lisp'}
@@ -60,6 +61,9 @@ let g:fzf_layout={'down': '~20%'}
 autocmd! FileType fzf
 autocmd  FileType fzf set laststatus=0 | autocmd WinLeave <buffer> set laststatus=2
 
+" GIT
+" let g:git_messenger_no_default_mappings=v:true
+
 " REPL
 " let g:slime_target = "neovim"
 let g:slime_target="tmux"
@@ -110,6 +114,8 @@ nnoremap <leader>h :noh<cr>
 nnoremap <leader>j :bprev<cr>
 nnoremap <leader>k :bnext<cr>
 nnoremap <leader>x :bprev\|bdel #<cr>
+nnoremap <leader>n :echom expand('%')<cr>
+nnoremap <leader>m :echom expand('%:p')<cr>
 " Search
 nnoremap <leader>r :Rg <c-r>=expand("<cword>")<cr>
 nnoremap <leader>f :Files<cr>
@@ -130,7 +136,7 @@ nnoremap <leader>cl :Last<cr>
 " nnoremap <leader>cp :Piggieback (figwheel.main.api/repl-env "dev")<cr>
 " Git
 nnoremap <leader>gd :Gvdiff<cr>
-nnoremap <leader>gm :Gvdiff master
+nnoremap <leader>gg :Gvdiff master
 nnoremap <leader>gs :Gstatus<cr>
 nnoremap <leader>gr :Gread<cr>
 nnoremap <leader>gw :Gwrite<cr>
@@ -172,6 +178,7 @@ if $SCHEME == 'dark'
   hi DiffAdd gui=none guibg=#3c3836
   hi DiffDelete gui=none guibg=#3c3836
   hi DiffChange gui=none guibg=#3c3836
+  hi Pmenu guibg=#3c3836
 else
   set background=light
   let g:gruvbox_contrast_light='hard'
@@ -182,5 +189,6 @@ else
   hi DiffAdd gui=none guibg=#ebdbb2
   hi DiffDelete gui=none guibg=#ebdbb2
   hi DiffChange gui=none guibg=#ebdbb2
+  hi Pmenu guibg=#ebdbb2
 endif
 let g:fzf_colors={}
