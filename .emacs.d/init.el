@@ -103,7 +103,7 @@
         (face-list)))
 
 ;; Font
-(set-frame-font "Hack-14")
+(set-frame-font "Operator Mono SSm-15")
 
 ;; Theme
 (use-package doom-themes
@@ -112,12 +112,11 @@
   :config
   (setq doom-themes-enable-bold nil
         doom-themes-enable-italic nil)
-  (load-theme 'doom-oceanic-next t)
-  (doom-themes-visual-bell-config)
-  (doom-themes-org-config)
+  (load-theme 'doom-gruvbox t)
   ;; (set-face-attribute 'show-paren-match nil
   ;;                     :bold nil :underline t :background nil :foreground "white")
-  (set-cursor-color "white"))
+  ;; (set-cursor-color "white")  (doom-themes-visual-bell-config)
+  (doom-themes-org-config))
 
 ;; Modeline
 (use-package delight :ensure t)
