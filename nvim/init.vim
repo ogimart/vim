@@ -179,6 +179,7 @@ if $SCHEME == 'dark'
   hi DiffDelete gui=none guibg=#3c3836
   hi DiffChange gui=none guibg=#3c3836
   hi Pmenu guibg=#3c3836
+  hi Visual guibg=#3c3836
 else
   set background=light
   let g:gruvbox_contrast_light='hard'
