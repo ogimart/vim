@@ -10,6 +10,9 @@ Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
 " Git
 Plug 'tpope/vim-fugitive'
 Plug 'rhysd/git-messenger.vim'
+" LSP Client
+Plug 'autozimu/LanguageClient-neovim', {'branch':'next', 'do':'bash install.sh'}
+Plug 'Shougo/deoplete.nvim', {'do':':UpdateRemotePlugins'}
 " Languages
 Plug 'tpope/vim-fireplace', {'for': 'clojure'}
 Plug 'kovisoft/slimv', {'for': 'lisp'}
