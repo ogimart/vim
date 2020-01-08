@@ -11,8 +11,8 @@ Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'rhysd/git-messenger.vim'
 " LSP Client
-Plug 'autozimu/LanguageClient-neovim', {'branch':'next', 'do':'bash install.sh'}
-Plug 'Shougo/deoplete.nvim', {'do':':UpdateRemotePlugins'}
+Plug 'autozimu/LanguageClient-neovim', {'branch': 'next', 'do': 'bash install.sh'}
+Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
 " Languages
 Plug 'tpope/vim-fireplace', {'for': 'clojure'}
 Plug 'kovisoft/slimv', {'for': 'lisp'}
@@ -73,6 +73,15 @@ let g:slime_target="tmux"
 let g:slime_default_config={"socket_name": "default", "target_pane": "{bottom-left}"}
 let g:slime_python_ipython=1
 
+" DEOPLETE
+let g:deoplete#enable_at_startup=1
+
+" LSP
+let g:LanguageClient_serverCommands = {
+      \ 'python': ['pyls'],
+      \ 'java': ['/usr/local/bin/jdtls', '-data', getcwd()],
+      \ }
+
 " PYTHON
 let g:jedi#completions_enabled=1
 let g:jedi#popup_on_dot=0
@@ -90,6 +99,9 @@ let g:slimv_impl='sbcl'
 let g:slimv_preferred='sbcl'
 let g:slimv_disable_clojure=1
 let g:slimv_disable_scheme=1
+
+" PROLOG
+autocmd BufRead,BufNewFile *.pl set filetype=prolog
 
 " C
 let g:clang_c_options='-std=c11'
@@ -123,9 +135,7 @@ nnoremap <leader>m :echom expand('%:p')<cr>
 nnoremap <leader>r :Rg <c-r>=expand("<cword>")<cr>
 nnoremap <leader>f :Files<cr>
 nnoremap <leader>b :Buffers<cr>
-nnoremap <leader>l :Lines<cr>
-" LSP
-" nnoremap <leader>s
+nnoremap <leader>s :Lines<cr>
 " Clojure and ClojureScript
 nnoremap <leader>cc :FireplaceConnect<cr>
 nnoremap <leader>ce :Eval<cr>
@@ -155,6 +165,17 @@ nnoremap <leader>du :diffupdate<cr>
 " Run External
 nnoremap <leader>X :Dispatch pdflatex %<cr>
 nnoremap <leader>D :Dispatch open -a "Marked 2" %<cr>
+" Language Server CLient
+nnoremap <leader>ld :call LanguageClient#textDocument_definition()<cr>
+nnoremap <leader>lr :call LanguageClient#textDocument_rename()<cr>
+nnoremap <leader>lf :call LanguageClient#textDocument_formatting()<cr>
+nnoremap <leader>lt :call LanguageClient#textDocument_typeDefinition()<cr>
+nnoremap <leader>lx :call LanguageClient#textDocument_references()<cr>
+nnoremap <leader>la :call LanguageClient_workspace_applyEdit()<cr>
+nnoremap <leader>lc :call LanguageClient#textDocument_completion()<cr>
+nnoremap <leader>lh :call LanguageClient#textDocument_hover()<cr>
+nnoremap <leader>ls :call LanguageClient_textDocument_documentSymbol()<cr>
+nnoremap <leader>lm :call LanguageClient_contextMenu()<cr>
 
 " STATUS LINE
 let g:lightline={
