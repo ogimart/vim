@@ -17,7 +17,7 @@ Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
 Plug 'tpope/vim-fireplace', {'for': 'clojure'}
 Plug 'kovisoft/slimv', {'for': 'lisp'}
 Plug 'davidhalter/jedi-vim', {'for': 'python'}
-Plug 'justmao945/vim-clang', {'for': 'c'}
+Plug 'rust-lang/rust.vim', {'for': 'rust'}
 " Dispatch / REPL
 Plug 'tpope/vim-dispatch'
 Plug 'jpalardy/vim-slime'
@@ -81,6 +81,7 @@ let g:LanguageClient_useVirtualText="No"
 let g:LanguageClient_serverCommands={
       \ 'clojure': ['clojure-lsp'],
       \ 'python': ['pyls'],
+      \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
       \ 'java': ['/usr/local/bin/jdtls', '-data', getcwd()],
       \ }
 

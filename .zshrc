@@ -29,6 +29,9 @@ export PATH=$JAVA_HOME/Contents/Home/bin:$PATH
 # LISP
 alias sbcl='rlwrap /usr/local/bin/sbcl "$@"'
 
+# RUST
+export PATH="$HOME/.cargo/bin:$PATH"
+
 # GO
 export GOPATH="${HOME}/.go"
 export GOROOT="$(brew --prefix golang)/libexec"
