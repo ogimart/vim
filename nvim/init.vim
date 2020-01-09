@@ -68,7 +68,7 @@ autocmd  FileType fzf set laststatus=0 | autocmd WinLeave <buffer> set laststatu
 " let g:git_messenger_no_default_mappings=v:true
 
 " REPL
-" let g:slime_target = "neovim"
+" let g:slime_target="neovim"
 let g:slime_target="tmux"
 let g:slime_default_config={"socket_name": "default", "target_pane": "{bottom-left}"}
 let g:slime_python_ipython=1
@@ -77,7 +77,9 @@ let g:slime_python_ipython=1
 let g:deoplete#enable_at_startup=1
 
 " LSP
-let g:LanguageClient_serverCommands = {
+let g:LanguageClient_useVirtualText="No"
+let g:LanguageClient_serverCommands={
+      \ 'clojure': ['clojure-lsp'],
       \ 'python': ['pyls'],
       \ 'java': ['/usr/local/bin/jdtls', '-data', getcwd()],
       \ }
