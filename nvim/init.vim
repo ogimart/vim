@@ -82,6 +82,8 @@ let g:LanguageClient_serverCommands={
       \ 'clojure': ['clojure-lsp'],
       \ 'python': ['pyls'],
       \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
+      \ 'cpp': ['clangd'],
+      \ 'c': ['clangd'],
       \ 'java': ['/usr/local/bin/jdtls', '-data', getcwd()],
       \ }
 
@@ -107,7 +109,6 @@ let g:slimv_disable_scheme=1
 autocmd BufRead,BufNewFile *.pl set filetype=prolog
 
 " C
-let g:clang_c_options='-std=c11'
 autocmd BufRead,BufNewFile *.h,*.c set filetype=c
 
 " PRETTY PRINT
