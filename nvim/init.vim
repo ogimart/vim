@@ -27,6 +27,7 @@ Plug 'gruvbox-community/gruvbox'
 call plug#end()
 
 " GENERAL
+set autoread
 set clipboard+=unnamed
 set noshowmode
 set signcolumn=yes
@@ -119,6 +120,47 @@ command! PrettyPrintXML !tidy -mi -xml -wrap 0 %
 " COMMENTS
 autocmd FileType sql setlocal commentstring=--\ %s
 
+" STATUS LINE
+let g:lightline={
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+      \ },
+      \ 'component_function': {
+      \   'gitbranch': 'fugitive#head'
+      \ },
+      \ 'subseparator': { 'left': '│', 'right': '│' },
+      \ }
+
+" COLOR SCHEME
+set termguicolors
+set fillchars+=vert:│
+if $SCHEME == 'dark'
+  set background=dark
+  let g:gruvbox_contrast_dark='hard'
+  let g:gruvbox_invert_selection=0
+  let g:gruvbox_sign_column='bg0'
+  let g:lightline.colorscheme='gruvbox'
+  colorscheme gruvbox
+  hi DiffAdd gui=none guibg=#3c3836
+  hi DiffDelete gui=none guibg=#3c3836
+  hi DiffChange gui=none guibg=#3c3836
+  hi Pmenu guibg=#3c3836
+  hi Visual guibg=#3c3836
+else
+  set background=light
+  let g:gruvbox_contrast_light='hard'
+  let g:gruvbox_invert_selection=0
+  let g:gruvbox_sign_column='bg0'
+  let g:lightline.colorscheme='gruvbox'
+  colorscheme gruvbox
+  hi DiffAdd gui=none guibg=#ebdbb2
+  hi DiffDelete gui=none guibg=#ebdbb2
+  hi DiffChange gui=none guibg=#ebdbb2
+  hi Pmenu guibg=#ebdbb2
+endif
+let g:fzf_colors={}
+
 " LEADER MAP
 let mapleader="\<space>"
 let maplocalleader="\\"
@@ -180,44 +222,3 @@ nnoremap <leader>lc :call LanguageClient#textDocument_completion()<cr>
 nnoremap <leader>lh :call LanguageClient#textDocument_hover()<cr>
 nnoremap <leader>ls :call LanguageClient_textDocument_documentSymbol()<cr>
 nnoremap <leader>lm :call LanguageClient_contextMenu()<cr>
-
-" STATUS LINE
-let g:lightline={
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
-      \ },
-      \ 'component_function': {
-      \   'gitbranch': 'fugitive#head'
-      \ },
-      \ 'subseparator': { 'left': '│', 'right': '│' },
-      \ }
-
-" COLOR SCHEME
-set termguicolors
-set fillchars+=vert:│
-if $SCHEME == 'dark'
-  set background=dark
-  let g:gruvbox_contrast_dark='hard'
-  let g:gruvbox_invert_selection=0
-  let g:gruvbox_sign_column='bg0'
-  let g:lightline.colorscheme='gruvbox'
-  colorscheme gruvbox
-  hi DiffAdd gui=none guibg=#3c3836
-  hi DiffDelete gui=none guibg=#3c3836
-  hi DiffChange gui=none guibg=#3c3836
-  hi Pmenu guibg=#3c3836
-  hi Visual guibg=#3c3836
-else
-  set background=light
-  let g:gruvbox_contrast_light='hard'
-  let g:gruvbox_invert_selection=0
-  let g:gruvbox_sign_column='bg0'
-  let g:lightline.colorscheme='gruvbox'
-  colorscheme gruvbox
-  hi DiffAdd gui=none guibg=#ebdbb2
-  hi DiffDelete gui=none guibg=#ebdbb2
-  hi DiffChange gui=none guibg=#ebdbb2
-  hi Pmenu guibg=#ebdbb2
-endif
-let g:fzf_colors={}
