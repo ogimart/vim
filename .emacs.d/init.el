@@ -112,10 +112,11 @@
   :config
   (setq doom-themes-enable-bold nil
         doom-themes-enable-italic nil)
-  (load-theme 'doom-gruvbox t)
+  (load-theme 'doom-tomorrow-night t)
   ;; (set-face-attribute 'show-paren-match nil
   ;;                     :bold nil :underline t :background nil :foreground "white")
-  ;; (set-cursor-color "white")  (doom-themes-visual-bell-config)
+  (set-cursor-color "white")
+  (doom-themes-visual-bell-config)
   (doom-themes-org-config))
 
 ;; Modeline
