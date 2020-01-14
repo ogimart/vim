@@ -28,6 +28,7 @@ call plug#end()
 
 " GENERAL
 set autoread
+set number
 set clipboard+=unnamed
 set noshowmode
 set signcolumn=yes
@@ -35,6 +36,10 @@ set list
 set listchars+=trail:·
 set listchars+=tab:\ \ 
 set listchars+=eol:\ 
+
+" UNDO
+set undofile
+set undodir=~/.local/share/nvim/undodir
 
 " BACKUP
 set noswapfile
@@ -65,30 +70,26 @@ let g:fzf_layout={'down': '~20%'}
 autocmd! FileType fzf
 autocmd  FileType fzf set laststatus=0 | autocmd WinLeave <buffer> set laststatus=2
 
-" GIT
+" GIT & DIFF
+" autocmd BufNewFile,BufRead fugitive://* set ...
 " let g:git_messenger_no_default_mappings=v:true
 
 " REPL
-" let g:slime_target="neovim"
 let g:slime_target="tmux"
 let g:slime_default_config={"socket_name": "default", "target_pane": "{bottom-left}"}
 let g:slime_python_ipython=1
 
-" DEOPLETE
+" LSP / DEOPLETE
 let g:deoplete#enable_at_startup=1
-
-" LSP
 let g:LanguageClient_useVirtualText="No"
-let g:LanguageClient_serverCommands={
-      \ 'clojure': ['clojure-lsp'],
-      \ 'python': ['pyls'],
-      \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
-      \ 'cpp': ['clangd'],
-      \ 'c': ['clangd'],
-      \ 'java': ['/usr/local/bin/jdtls', '-data', getcwd()],
-      \ }
+let g:LanguageClient_serverCommands={}
+let g:LanguageClient_rootMarkers={}
+
+" CLOJURE
+" let g:LanguageClient_serverCommands['clojure']=['clojure-lsp']
 
 " PYTHON
+let g:LanguageClient_serverCommands['python']=['pyls']
 let g:jedi#completions_enabled=1
 let g:jedi#popup_on_dot=0
 let g:jedi#goto_command="<leader>pc"
@@ -109,8 +110,21 @@ let g:slimv_disable_scheme=1
 " PROLOG
 autocmd BufRead,BufNewFile *.pl set filetype=prolog
 
-" C
+" RUST
+let g:LanguageClient_serverCommands['rust']=['~/.cargo/bin/rustup', 'run', 'stable', 'rls']
+
+" C / C++
 autocmd BufRead,BufNewFile *.h,*.c set filetype=c
+let g:LanguageClient_serverCommands['c']=['clangd']
+let g:LanguageClient_serverCommands['cpp']=['clangd']
+
+" JAVA
+let g:LanguageClient_serverCommands['java']=['/usr/local/bin/jdtls', '-data', getcwd()]
+
+" JAVASCRIPT
+let g:LanguageClient_rootMarkers['javascript']=['jsconfig.json']
+let g:LanguageClient_serverCommands['javascript']=['javascript-typescript-stdio']
+let g:LanguageClient_serverCommands['javascript.jsx']=['javascript-typescript-stdio']
 
 " PRETTY PRINT
 command! PrettyPrintJSON %!python -m json.tool
@@ -194,7 +208,8 @@ nnoremap <leader>cx :Require! <bar> Eval (clojure.test/run-tests)<cr>
 nnoremap <leader>cl :Last<cr>
 " nnoremap <leader>cp :Piggieback (figwheel.main.api/repl-env "dev")<cr>
 " Git
-nnoremap <leader>gd :Gvdiff<cr>
+nnoremap <leader>gd :Gdiff<cr>
+nnoremap <leader>gv :Gvdiff<cr>
 nnoremap <leader>gg :Gvdiff master
 nnoremap <leader>gs :Gstatus<cr>
 nnoremap <leader>gr :Gread<cr>
