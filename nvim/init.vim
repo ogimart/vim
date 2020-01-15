@@ -23,7 +23,7 @@ Plug 'tpope/vim-dispatch'
 Plug 'jpalardy/vim-slime'
 " Status & Color Scheme
 Plug 'itchyny/lightline.vim'
-Plug 'gruvbox-community/gruvbox'
+Plug 'arcticicestudio/nord-vim'
 call plug#end()
 
 " GENERAL
@@ -149,31 +149,13 @@ let g:lightline={
 " COLOR SCHEME
 set termguicolors
 set fillchars+=vert:│
-if $SCHEME == 'dark'
-  set background=dark
-  let g:gruvbox_contrast_dark='hard'
-  let g:gruvbox_invert_selection=0
-  let g:gruvbox_sign_column='bg0'
-  let g:lightline.colorscheme='gruvbox'
-  colorscheme gruvbox
-  hi DiffAdd gui=none guibg=#3c3836
-  hi DiffDelete gui=none guibg=#3c3836
-  hi DiffChange gui=none guibg=#3c3836
-  hi Pmenu guibg=#3c3836
-  hi Visual guibg=#3c3836
-else
-  set background=light
-  let g:gruvbox_contrast_light='hard'
-  let g:gruvbox_invert_selection=0
-  let g:gruvbox_sign_column='bg0'
-  let g:lightline.colorscheme='gruvbox'
-  colorscheme gruvbox
-  hi DiffAdd gui=none guibg=#ebdbb2
-  hi DiffDelete gui=none guibg=#ebdbb2
-  hi DiffChange gui=none guibg=#ebdbb2
-  hi Pmenu guibg=#ebdbb2
-endif
-let g:fzf_colors={}
+set background=dark
+let g:nord_uniform_diff_background=1
+let g:nord_italic=1
+colorscheme nord
+let g:lightline.colorscheme='nord'
+hi ClojureKeyword guifg=#8fbcbb
+hi ClojureSpecial guifg=#d08770
 
 " LEADER MAP
 let mapleader="\<space>"
