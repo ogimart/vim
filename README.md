@@ -47,8 +47,8 @@ Source my `.zshrc` in `~/.zshrc`:
 
 ## Color Scheme
 
-  [neovim: Gruvbox](https://github.com/gruvbox-community/gruvbox)  
-  [iTerm2: Gruvbox](https://github.com/gruvbox-community/gruvbox-contrib)  
+  [neovim: Nord](https://github.com/arcticicestudio/nord-vim)  
+  [iTerm2: Nord](https://github.com/arcticicestudio/nord-iterm2)
 
 ## Font
 
