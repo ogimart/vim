@@ -307,6 +307,7 @@
   (add-hook 'emacs-lisp-mode-hook 'highlight-numbers-mode)
   (add-hook 'emacs-lisp-mode-hook 'highlight-quoted-mode))
 
+
 ;;; SCHEME
 
 (use-package geiser
@@ -585,6 +586,23 @@
 (global-set-key (kbd "C-<backspace>") 'backward-kill-line)
 (global-set-key (kbd "C-'") 'delete-backward-char)
 (global-set-key (kbd "C-x k") 'kill-this-buffer)
+
+
+;;;; EVIL MODE
+
+(use-package evil
+  :ensure t
+  :init
+  (setq evil-want-integration t) ;; This is optional since it's already set to t by default.
+  (setq evil-want-keybinding nil)
+  :config
+  (evil-mode 1))
+
+(use-package evil-collection
+  :after evil
+  :ensure t
+  :config
+  (evil-collection-init))
 
 
 ;;;; SERVER
