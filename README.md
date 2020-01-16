@@ -7,8 +7,9 @@ My development environment for:
 
   - **Clojure**
   - **Common Lisp**
-  - **Scheme**
+  - **Go**
   - **Python**
+  - **Rust**
   - **C**
 
 ## Dependencies
