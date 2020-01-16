@@ -39,6 +39,9 @@ export GOPATH="${HOME}/.go"
 export GOROOT="$(brew --prefix golang)/libexec"
 export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
 
+# PYTHON
+export VIRTUAL_ENV_DISABLE_PROMPT=
+
 # FZF
 source /usr/local/opt/fzf/shell/key-bindings.zsh
 source /usr/local/opt/fzf/shell/completion.zsh
