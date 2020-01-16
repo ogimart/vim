@@ -17,7 +17,9 @@ Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
 Plug 'tpope/vim-fireplace', {'for': 'clojure'}
 Plug 'kovisoft/slimv', {'for': 'lisp'}
 Plug 'davidhalter/jedi-vim', {'for': 'python'}
+Plug 'fatih/vim-go', {'do': ':GoUpdateBinaries'}
 Plug 'rust-lang/rust.vim', {'for': 'rust'}
+Plug 'pangloss/vim-javascript' | Plug 'maxmellon/vim-jsx-pretty'
 " Dispatch / REPL
 Plug 'tpope/vim-dispatch'
 Plug 'jpalardy/vim-slime'
@@ -157,7 +159,7 @@ let g:lightline.colorscheme='nord'
 hi Comment gui=italic
 hi ClojureKeyword guifg=#8fbcbb
 hi ClojureSpecial guifg=#d08770
-hi ClojureParen guifg=#aaaaaa
+hi ClojureParen guifg=#bbbbbb
 
 " LEADER MAP
 let mapleader="\<space>"
