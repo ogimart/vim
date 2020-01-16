@@ -10,7 +10,7 @@ export EDITOR=vi
 export VISUAL=vi
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
-# export TERM=xterm-256color
+export TERM=xterm-256color
 
 # EMACS
 alias em='/usr/local/bin/emacs "$@"'

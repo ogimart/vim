@@ -154,8 +154,10 @@ let g:nord_uniform_diff_background=1
 let g:nord_italic=1
 colorscheme nord
 let g:lightline.colorscheme='nord'
+hi Comment gui=italic
 hi ClojureKeyword guifg=#8fbcbb
 hi ClojureSpecial guifg=#d08770
+hi ClojureParen guifg=#aaaaaa
 
 " LEADER MAP
 let mapleader="\<space>"
