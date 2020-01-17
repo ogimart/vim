@@ -15,11 +15,11 @@ Plug 'autozimu/LanguageClient-neovim', {'branch': 'next', 'do': 'bash install.sh
 Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
 " Languages
 Plug 'tpope/vim-fireplace', {'for': 'clojure'}
-Plug 'kovisoft/slimv', {'for': 'lisp'}
 Plug 'davidhalter/jedi-vim', {'for': 'python'}
 Plug 'fatih/vim-go', {'do': ':GoUpdateBinaries'}
 Plug 'rust-lang/rust.vim', {'for': 'rust'}
-Plug 'pangloss/vim-javascript' | Plug 'maxmellon/vim-jsx-pretty'
+Plug 'pangloss/vim-javascript'
+Plug 'maxmellon/vim-jsx-pretty'
 " Dispatch / REPL
 Plug 'tpope/vim-dispatch'
 Plug 'jpalardy/vim-slime'
@@ -101,13 +101,6 @@ let g:jedi#documentation_command="K"
 let g:jedi#usages_command="<leader>pn"
 let g:jedi#completions_command="<C-Space>"
 let g:jedi#rename_command="<leader>pr"
-
-" COMMON LISP
-let g:paredit_mode=0
-let g:slimv_impl='sbcl'
-let g:slimv_preferred='sbcl'
-let g:slimv_disable_clojure=1
-let g:slimv_disable_scheme=1
 
 " PROLOG
 autocmd BufRead,BufNewFile *.pl set filetype=prolog

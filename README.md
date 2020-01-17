@@ -2,15 +2,14 @@
 
 ## Description
 
-Dot files for **zsh**, **tmux**, **neovim**, and **emacs**.  
+Dot files for **zsh**, **tmux**, and **neovim**.  
 My development environment for:
 
+  - **C**
   - **Clojure**
-  - **Common Lisp**
   - **Go**
   - **Python**
   - **Rust**
-  - **C**
 
 ## Dependencies
 
