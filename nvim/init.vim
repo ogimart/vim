@@ -15,11 +15,9 @@ Plug 'autozimu/LanguageClient-neovim', {'branch': 'next', 'do': 'bash install.sh
 Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
 " Languages
 Plug 'tpope/vim-fireplace', {'for': 'clojure'}
-Plug 'davidhalter/jedi-vim', {'for': 'python'}
 Plug 'fatih/vim-go', {'do': ':GoUpdateBinaries'}
 Plug 'rust-lang/rust.vim', {'for': 'rust'}
-Plug 'pangloss/vim-javascript'
-Plug 'maxmellon/vim-jsx-pretty'
+Plug 'pangloss/vim-javascript' | Plug 'maxmellon/vim-jsx-pretty'
 " Dispatch / REPL
 Plug 'tpope/vim-dispatch'
 Plug 'jpalardy/vim-slime'
@@ -53,7 +51,6 @@ set expandtab
 set smarttab
 set shiftwidth=2
 set tabstop=2
-autocmd FileType python setlocal shiftwidth=4 softtabstop=4
 
 " INDENT
 set autoindent
@@ -91,16 +88,8 @@ let g:LanguageClient_rootMarkers={}
 " let g:LanguageClient_serverCommands['clojure']=['clojure-lsp']
 
 " PYTHON
+autocmd FileType python setlocal shiftwidth=4 softtabstop=4
 let g:LanguageClient_serverCommands['python']=['pyls']
-let g:jedi#completions_enabled=1
-let g:jedi#popup_on_dot=0
-let g:jedi#goto_command="<leader>pc"
-let g:jedi#goto_assignments_command="<leader>pa"
-let g:jedi#goto_definitions_command="<leader>pd"
-let g:jedi#documentation_command="K"
-let g:jedi#usages_command="<leader>pn"
-let g:jedi#completions_command="<C-Space>"
-let g:jedi#rename_command="<leader>pr"
 
 " PROLOG
 autocmd BufRead,BufNewFile *.pl set filetype=prolog
