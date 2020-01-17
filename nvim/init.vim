@@ -16,7 +16,6 @@ Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
 " Languages
 Plug 'tpope/vim-fireplace', {'for': 'clojure'}
 Plug 'fatih/vim-go', {'do': ':GoUpdateBinaries'}
-Plug 'rust-lang/rust.vim', {'for': 'rust'}
 Plug 'pangloss/vim-javascript' | Plug 'maxmellon/vim-jsx-pretty'
 " Dispatch / REPL
 Plug 'tpope/vim-dispatch'
@@ -93,9 +92,6 @@ let g:LanguageClient_serverCommands['python']=['pyls']
 
 " PROLOG
 autocmd BufRead,BufNewFile *.pl set filetype=prolog
-
-" RUST
-let g:LanguageClient_serverCommands['rust']=['~/.cargo/bin/rustup', 'run', 'stable', 'rls']
 
 " C / C++
 autocmd BufRead,BufNewFile *.h,*.c set filetype=c
