@@ -15,8 +15,9 @@ Plug 'autozimu/LanguageClient-neovim', {'branch': 'next', 'do': 'bash install.sh
 Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
 " Languages
 Plug 'tpope/vim-fireplace', {'for': 'clojure'}
-Plug 'fatih/vim-go', {'do': ':GoUpdateBinaries'}
-Plug 'pangloss/vim-javascript' | Plug 'maxmellon/vim-jsx-pretty'
+Plug 'fatih/vim-go', {'for': ['go', 'gomod'], 'do': ':GoUpdateBinaries'}
+Plug 'pangloss/vim-javascript', {'for': 'javascript'}
+Plug 'maxmellon/vim-jsx-pretty', {'for': 'javascriptreact'}
 " Dispatch / REPL
 Plug 'tpope/vim-dispatch'
 Plug 'jpalardy/vim-slime'
@@ -84,27 +85,32 @@ let g:LanguageClient_serverCommands={}
 let g:LanguageClient_rootMarkers={}
 
 " CLOJURE
-" let g:LanguageClient_serverCommands['clojure']=['clojure-lsp']
+" let g:LanguageClient_serverCommands['clojure'] = ['clojure-lsp']
+
+" GO
+" call deoplete#custom#option('omni_patterns', { 'go': '[^. *\t]\.\w*' })
+let g:LanguageClient_rootMarkers['go'] = ['go.mod']
+let g:LanguageClient_serverCommands['go'] = ['gopls']
 
 " PYTHON
 autocmd FileType python setlocal shiftwidth=4 softtabstop=4
-let g:LanguageClient_serverCommands['python']=['pyls']
+let g:LanguageClient_serverCommands['python'] = ['pyls']
 
 " PROLOG
 autocmd BufRead,BufNewFile *.pl set filetype=prolog
 
 " C / C++
 autocmd BufRead,BufNewFile *.h,*.c set filetype=c
-let g:LanguageClient_serverCommands['c']=['clangd']
-let g:LanguageClient_serverCommands['cpp']=['clangd']
+let g:LanguageClient_serverCommands['c'] = ['clangd']
+let g:LanguageClient_serverCommands['cpp'] = ['clangd']
 
 " JAVA
-let g:LanguageClient_serverCommands['java']=['/usr/local/bin/jdtls', '-data', getcwd()]
+let g:LanguageClient_serverCommands['java'] = ['/usr/local/bin/jdtls', '-data', getcwd()]
 
 " JAVASCRIPT
-let g:LanguageClient_rootMarkers['javascript']=['jsconfig.json']
-let g:LanguageClient_serverCommands['javascript']=['javascript-typescript-stdio']
-let g:LanguageClient_serverCommands['javascript.jsx']=['javascript-typescript-stdio']
+let g:LanguageClient_rootMarkers['javascript'] = ['jsconfig.json']
+let g:LanguageClient_serverCommands['javascript'] = ['javascript-typescript-stdio']
+let g:LanguageClient_serverCommands['javascript.jsx'] = ['javascript-typescript-stdio']
 
 " PRETTY PRINT
 command! PrettyPrintJSON %!python -m json.tool

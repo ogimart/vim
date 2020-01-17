@@ -11,17 +11,24 @@ Keep it simple, with the minimal number of pluggins.
 
 ## Searching
 
-  fzf
+  junegunn/fzf.vim
+
+## LSP and Completion
+
+  autozimu/LanguageClient-neovim
+  Shougo/deoplete.nvim
 
 ## Languages
 
   tpope/vim-fireplace - clojure
-  davidhalter/jedi-vim - python
+  fatih/vim-go - go
 
 ## Git
 
   tpope/vim-fugitive
+  rhysd/git-messenger.vim
 
-## Terminal / REPL
+## Async and REPL
 
-  kassio/neoterm
+  tpope/vim-dispatch'
+  jpalardy/vim-slime'
