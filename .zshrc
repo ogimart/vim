@@ -17,22 +17,10 @@ alias em='/usr/local/bin/emacs "$@"'
 alias ec='/usr/local/bin/emacsclient "$@"'
 alias en='/usr/local/bin/emacs -nw "$@"'
 
-# JAVA
-# export JAVA_HOME=$(/usr/libexec/java_home)
-# export JAVA_HOME=/Library/Java/JavaVirtualMachines/amazon-corretto-11.jdk/Contents/Home
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/amazon-corretto-8.jdk/Contents/Home
-export PATH=$JAVA_HOME/Contents/Home/bin:$PATH
-
-# LISP
-alias sbcl='rlwrap /usr/local/bin/sbcl "$@"'
-
 # LLVM
 export PATH="/usr/local/opt/llvm/bin:$PATH"
 export LDFLAGS="-L/usr/local/opt/llvm/lib"
 export CPPFLAGS="-I/usr/local/opt/llvm/include"
-
-# RUST
-export PATH="$HOME/.cargo/bin:$PATH"
 
 # GO
 export GOPATH="${HOME}/.go"
@@ -41,6 +29,12 @@ export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
 
 # PYTHON
 export VIRTUAL_ENV_DISABLE_PROMPT=
+
+# JAVA
+# export JAVA_HOME=$(/usr/libexec/java_home)
+# export JAVA_HOME=/Library/Java/JavaVirtualMachines/amazon-corretto-11.jdk/Contents/Home
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/amazon-corretto-8.jdk/Contents/Home
+export PATH=$JAVA_HOME/Contents/Home/bin:$PATH
 
 # FZF
 source /usr/local/opt/fzf/shell/key-bindings.zsh
