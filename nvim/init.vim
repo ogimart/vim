@@ -97,7 +97,14 @@ autocmd FileType python setlocal shiftwidth=4 softtabstop=4
 let g:LanguageClient_serverCommands['python'] = ['pyls']
 
 " PROLOG
-autocmd BufRead,BufNewFile *.pl set filetype=prolog
+autocmd BufRead,BufNewFile *.pl set filetype=logtalk
+" let g:LanguageClient_rootMarkers['logtalk'] = ['']
+let g:LanguageClient_serverCommands['logtalk'] =
+      \ ['swipl',
+      \ '-g', 'use_module(library(lsp_server)).',
+      \ '-g', 'lsp_server:main',
+      \ '-t', 'halt',
+      \ '--', 'stdio']
 
 " C / C++
 autocmd BufRead,BufNewFile *.h,*.c set filetype=c

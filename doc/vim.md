@@ -4,9 +4,9 @@ Keep it simple, with the minimal number of pluggins.
 
 ## Editing
 
-  guns/vim-sexp
-  tpope/vim-surround
-  tpope/vim-commentary
+  guns/vim-sexp  
+  tpope/vim-surround  
+  tpope/vim-commentary  
   tpope/vim-repeat
 
 ## Searching
@@ -15,20 +15,20 @@ Keep it simple, with the minimal number of pluggins.
 
 ## LSP and Completion
 
-  autozimu/LanguageClient-neovim
+  autozimu/LanguageClient-neovim  
   Shougo/deoplete.nvim
 
 ## Languages
 
-  tpope/vim-fireplace - clojure
+  tpope/vim-fireplace - clojure  
   fatih/vim-go - go
 
 ## Git
 
-  tpope/vim-fugitive
+  tpope/vim-fugitive  
   rhysd/git-messenger.vim
 
 ## Async and REPL
 
-  tpope/vim-dispatch'
-  jpalardy/vim-slime'
+  tpope/vim-dispatch  
+  jpalardy/vim-slime
