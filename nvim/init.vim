@@ -10,7 +10,7 @@ Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
 " Git
 Plug 'tpope/vim-fugitive'
 Plug 'rhysd/git-messenger.vim'
-" LSP Client
+" LSP Client & Completion
 Plug 'autozimu/LanguageClient-neovim', {'branch': 'next', 'do': 'bash install.sh'}
 Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
 " Languages
@@ -33,9 +33,7 @@ set clipboard+=unnamed
 set noshowmode
 set signcolumn=yes
 set list
-set listchars+=trail:·
-set listchars+=tab:\ \ 
-set listchars+=eol:\ 
+set listchars+=trail:\·,tab:\│\ ,eol:\ 
 
 " UNDO
 set undofile
@@ -88,7 +86,9 @@ let g:LanguageClient_rootMarkers={}
 " let g:LanguageClient_serverCommands['clojure'] = ['clojure-lsp']
 
 " GO
+autocmd FileType go setlocal noexpandtab tabstop=4 shiftwidth=4
 " call deoplete#custom#option('omni_patterns', { 'go': '[^. *\t]\.\w*' })
+let g:go_gopls_enabled=0
 let g:LanguageClient_rootMarkers['go'] = ['go.mod']
 let g:LanguageClient_serverCommands['go'] = ['gopls']
 
