@@ -15,6 +15,7 @@ Plug 'autozimu/LanguageClient-neovim', {'branch': 'next', 'do': 'bash install.sh
 Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
 " Languages
 Plug 'tpope/vim-fireplace', {'for': 'clojure'}
+Plug 'rust-lang/rust.vim', {'for': 'rust'}
 Plug 'fatih/vim-go', {'for': ['go', 'gomod'], 'do': ':GoUpdateBinaries'}
 Plug 'pangloss/vim-javascript', {'for': 'javascript'}
 Plug 'maxmellon/vim-jsx-pretty', {'for': 'javascriptreact'}
@@ -24,6 +25,7 @@ Plug 'jpalardy/vim-slime'
 " Status & Color Scheme
 Plug 'itchyny/lightline.vim'
 Plug 'arcticicestudio/nord-vim'
+Plug 'lifepillar/vim-solarized8'
 call plug#end()
 
 " GENERAL
@@ -106,6 +108,9 @@ let g:LanguageClient_serverCommands['logtalk'] =
       \ '-t', 'halt',
       \ '--', 'stdio']
 
+" RUST
+let g:LanguageClient_serverCommands['rust']=['~/.cargo/bin/rustup', 'run', 'stable', 'rls']
+
 " C / C++
 autocmd BufRead,BufNewFile *.h,*.c set filetype=c
 let g:LanguageClient_serverCommands['c'] = ['clangd']
@@ -142,15 +147,22 @@ let g:lightline={
 " COLOR SCHEME
 set termguicolors
 set fillchars+=vert:│
+" Nord
 set background=dark
 let g:nord_uniform_diff_background=1
 let g:nord_italic=1
 colorscheme nord
 let g:lightline.colorscheme='nord'
-hi Comment gui=italic
 hi ClojureKeyword guifg=#8fbcbb
 hi ClojureSpecial guifg=#d08770
 hi ClojureParen guifg=#bbbbbb
+" Solarized Light
+" set background=light
+" colorscheme solarized8_flat
+" let g:lightline.colorscheme='solarized'
+" hi VertSplit guibg=bg
+" hi clojureParen guifg=#93a1a1
+hi Comment gui=italic
 
 " LEADER MAP
 let mapleader="\<space>"

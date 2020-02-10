@@ -6,8 +6,10 @@ Dot files for **zsh**, **tmux**, and **neovim**.
 My development environment for:
 
   - **Clojure**
+  - **C & C++**
   - **Go**
   - **Python**
+  - **Rust**
 
 ## Dependencies
 
